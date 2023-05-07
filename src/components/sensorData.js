@@ -57,7 +57,7 @@ export default function getData(data) {
       return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         
-        xhr.open("GET", `https://api/terasense/measurements/last/${temperature}`); 
+        xhr.open("GET", `https://api/terasense/measurements/last/${temperature}`); /* mocked */
         xhr.responseType = "json";
   
         xhr.onload = function() {

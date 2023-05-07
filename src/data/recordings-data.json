@@ -1,0 +1,34 @@
+{
+    "readings": [
+        {
+            "id": 1,
+            "temperature": 22.0,
+            "co2": 1000,
+            "humidity": 55
+        },
+        {
+            "id": 2,
+            "temperature": 24.0,
+            "co2": 1000,
+            "humidity": 55
+        },
+        {
+            "id": 3,
+            "temperature": 24.0,
+            "co2": 1000,
+            "humidity": 55
+        },
+        {
+            "id": 4,
+            "temperature": 24.0,
+            "co2": 1000,
+            "humidity": 55
+        },
+        {
+            "id": 5,
+            "temperature": 22.0,
+            "co2": 1000,
+            "humidity": 60
+        }
+    ]
+}
