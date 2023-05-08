@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import TempMock from './components/tempMock';
+import Sidebar from './components/sideBar';
 
 function App() {
   return (
-    <TempMock />
+    <div className="App">
+      {/* <TempMock /> */}
+      <Sidebar />
+    </div>
   );
 }
 

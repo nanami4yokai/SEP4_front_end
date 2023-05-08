@@ -1,0 +1,109 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  width: 330px;
+  height: 100vh;
+  background-color: #a5f7ad;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.sidebar-nav a:hover {
+  background-color: #44c851;
+  color: #333;
+}
+
+#logo {
+  position: fixed;
+  width: 185px;
+  height: 200px;
+  left: 65px;
+  top: -5px;
+}
+
+.user {
+  margin-left: 25px;
+  margin-top: 175px;
+  display: flex;
+  align-items: center;
+}
+
+#avatar {
+  width: 50px;
+  height: 50px;
+}
+
+#welcome-mssg {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.user-info-bttns {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-info-bttns button:hover {
+  color: #44c851;
+}
+
+#log-out {
+  text-align: left;
+  margin-top: 5px;
+  margin-right: 10px;
+  border: 0;
+  background-color: transparent;
+}
+
+#edit-user {
+  margin-top: 5px;
+  margin-left: 50px;
+  border: 0;
+  background-color: transparent;
+}
+
+#hr {
+  margin-top: 20px;
+  border: solid;
+  background-color: #44c851;
+  border-color: #44c851;
+}
+
+#add-terrarium {
+  border: 0;
+  background-color: transparent;
+}
+
+.add-terrarium button:hover {
+  color: #44c851;
+}
