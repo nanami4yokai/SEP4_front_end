@@ -1,7 +1,7 @@
 import React from 'react'
 import TempMock from './components/tempMock';
 import Sidebar from './components/sideBar';
-import Displays from './components/Displays';
+import TempDisplay from './components/TempDisplay';
 import CO2Display from './components/CO2Display';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       {/* <TempMock /> */}
       <Sidebar />
-      <Displays />
+      <TempDisplay />
       <CO2Display/>
     </div>
   );
