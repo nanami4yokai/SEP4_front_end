@@ -18,7 +18,7 @@
     
 }
 
-.description{
+.temp-description{
     position: relative;
     width: 231px;
     height: 0px;
@@ -26,4 +26,32 @@
     top: 15px;
    
     
+}
+
+.cobox{
+    position: relative;
+    width: 180px;
+    height: 107px;
+    left: 900px;
+    top: 50px;
+
+    
+    background: #EDFFEF;
+    border-radius: 25px;
+}
+
+.co{
+    position: relative;
+    width: 231px;
+    height: 0px;
+    left: 40px;
+    top: 40px;
+}
+
+.co-description{
+    position: relative;
+    width: 231px;
+    height: 0px;
+    left: 70px;
+    top: 15px;
 }
