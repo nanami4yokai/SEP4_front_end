@@ -2,24 +2,24 @@ import React, {useState, useEffect} from 'react';
 import './Displays.css';
 import myData from '../data/recordings-data.json'
 
-function CO2Display(){
+function HumidDisplay(){
 
-    // const [co2, setCo2] = useState(null);
+    // const [humid, setHumid] = useState(null);
   
     //   useEffect(() => {
     //       const intervalId = setInterval(() => {
-    //           fetch('api/co2') // insert api refrence when we get it 
+    //           fetch('api/humid') // insert api refrence when we get it 
     //           .then(response => response.json())
-    //           .then(data => { setCo2(data.co2);
+    //           .then(data => { setHumid(data.humid);
     //           });
     //       })
     //   }, 20000); //Update every 20 sec
   
   //   return (
   //     <div>
-  //         <h2>CO2</h2>
-  //         {co2 !== null ? (
-  //             <p>{co2}</p>
+  //         <h2>Humidity</h2>
+  //         {humid !== null ? (
+  //             <p>{humid}</p>
   //         ) : (
   //             <p>No data</p>
   //         )}
@@ -37,12 +37,12 @@ function CO2Display(){
     }
   
     return (
-      <div className="cobox" key={element.id}>
-        <div className="co">
-          {element && <h1>{element.co2} ppm</h1>}
+      <div className="humidbox" key={element.id}>
+        <div className="humid">
+          {element && <h1>{element.humidity} %</h1>}
         </div>
-        <div className="co-description">
-          <p>CO2</p>
+        <div className="humid-description">
+          <p>Humidity</p>
         </div>
       </div>
     );
@@ -57,4 +57,4 @@ function CO2Display(){
   
   }
   
-export default CO2Display;  
+export default HumidDisplay; 

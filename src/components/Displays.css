@@ -44,7 +44,7 @@
     position: relative;
     width: 231px;
     height: 0px;
-    left: 40px;
+    left: 15px;
     top: 40px;
 }
 
@@ -53,5 +53,33 @@
     width: 231px;
     height: 0px;
     left: 70px;
+    top: 15px;
+}
+
+.humidbox{
+    position: relative;
+    width: 180px;
+    height: 107px;
+    left: 1100px;
+    top: -60px;
+
+    
+    background: #EDFFEF;
+    border-radius: 25px;
+}
+
+.humid{
+    position: relative;
+    width: 231px;
+    height: 0px;
+    left: 60px;
+    top: 40px;
+}
+
+.humid-description{
+     position: relative;
+    width: 231px;
+    height: 0px;
+    left: 60px;
     top: 15px;
 }
