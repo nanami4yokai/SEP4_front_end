@@ -31,7 +31,7 @@ function TempDisplay() {
             <div className="temp">
               {element && <h1>{element.temperature} C</h1>}
             </div>
-            <div className="description">
+            <div className="temp-description">
               <p>Temperature</p>
             </div>
           </div>
@@ -58,3 +58,4 @@ function TempDisplay() {
 }
 
 export default TempDisplay;
+
