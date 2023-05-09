@@ -13,18 +13,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
+} */
+/* 
 p {
   font-size: 1.6rem;
 }
 
 h1 {
   font-size: 6rem;
-}
+} */
 
 .app {
   width: 100%;

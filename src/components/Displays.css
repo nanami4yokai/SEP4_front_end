@@ -1,0 +1,29 @@
+.tempbox {
+    position: relative;
+    width: 180px;
+    height: 107px;
+    left: 699px;
+    top: 154px;
+    
+    background: #EDFFEF;
+    border-radius: 25px;
+}
+
+.temp{
+    position: relative;
+    width: 231px;
+    height: 0px;
+    left: 60px;
+    top: 40px;
+    
+}
+
+.description{
+    position: relative;
+    width: 231px;
+    height: 0px;
+    left: 50px;
+    top: 15px;
+   
+    
+}
