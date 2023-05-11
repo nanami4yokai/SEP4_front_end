@@ -4,9 +4,17 @@ import chameleon from "../images/chameleon.png";
 import user from "../images/user.png";
 
 function Sidebar() {
+  const [collapsed, setCollapsed] = useState(true);
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed);
+  };
 
   return (
-    <div className="sidebar">
+      <div className={`sidebar ${ collapsed ? "" : "collapsed"}`}>
+        <button className="toggle-btn" onClick={toggleCollapse}>
+          {collapsed ? "<<" : ">>"}
+        </button>
+      <div className="sidebar-content">
       <img id="logo" src={chameleon} alt="Logo"></img>
 
       <div className="user">
@@ -17,6 +25,7 @@ function Sidebar() {
             <button id="log-out">Log out</button>
             <button id="edit-user">Edit user</button>
           </div>
+        </div>
         </div>
       </div>
       <hr id="hr" />
