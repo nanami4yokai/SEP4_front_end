@@ -40,6 +40,13 @@
   background-color: #60C2E1;
 }
 
+#co2-circle {
+  width: 33.5px;
+  height: 33.5px;
+  border-radius: 50%;
+  background-color: #82F58E;
+}
+
 #alert-max-circle,
 #alert-min-circle,
 #current {
