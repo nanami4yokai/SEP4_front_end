@@ -8,6 +8,10 @@
     border-radius: 25px;
 }
 
+#name{
+  font-size: 24px;
+}
+
 .top-row{
     display: flex;
     flex-direction: row;
@@ -70,4 +74,9 @@
 .top-row{
     margin-top: 12px;
     margin-left: 20px;
+}
+
+.graph canvas{
+  height: 330px !important;
+  width: 1000px !important;
 }

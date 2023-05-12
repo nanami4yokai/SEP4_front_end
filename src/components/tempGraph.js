@@ -1,10 +1,44 @@
-import React, { useState, useEffect, useRef } from 'react'
-import Chart from 'chart.js/auto'
-import data from '../data/recordings-data.json'
+import React, { useState, useEffect } from 'react'
+import { Chart as ChartJS, LineElement, CategoryScale, PointElement, LinearScale } from 'chart.js'
+import { Line } from 'react-chartjs-2'
+import myData from '../data/recordings-data.json'
 import "./TempGraph.css"
 
+ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement)
+
 const TempGraph = () => {
-    
+    const [chart, setChart] = useState([]);
+
+    useEffect(() => {
+        setChart(myData.readings);
+    }, [])
+
+    var chartData = {
+        labels: chart?.map(element => element.id),
+        datasets: [{
+            label: 'temperature',
+            data: chart?.map(element => element.temperature),
+            backgroundColor: ['rgba(000, 000, 000, 1)'],
+            borderColor: ['rgba(000, 000, 000, 1)'],
+            borderWidth: 1
+        }]
+    }
+
+    var options = {
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: false,
+                min: 14,
+                max: 32
+            }
+        },
+        legend: {
+            labels: {
+                fontSize: 26
+            }
+        }
+    }
 
     return (
         <div className='container'>
@@ -28,11 +62,16 @@ const TempGraph = () => {
                     </div>
                 </div>
             </div>
+            <br></br>
             <div className='graph'>
-            <canvas ref={canvasRef} id='temp-chart'></canvas>
+                <Line
+                    data={chartData}
+                    height={330}
+                    options={options}
+                />
             </div>
         </div>
     )
 }
 
-export default TempGraph
+export default TempGraph;
