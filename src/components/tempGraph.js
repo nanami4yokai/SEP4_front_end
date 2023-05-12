@@ -15,13 +15,31 @@ const TempGraph = () => {
 
     var chartData = {
         labels: chart?.map(element => element.id),
-        datasets: [{
-            label: 'temperature',
-            data: chart?.map(element => element.temperature),
-            backgroundColor: ['rgba(000, 000, 000, 1)'],
-            borderColor: ['rgba(000, 000, 000, 1)'],
-            borderWidth: 1
-        }]
+        datasets: [
+            {
+                label: 'max alert',
+                data: [28, 28, 28, 28, 28],
+                fill: false,
+                backgroundColor: 'red',
+                borderColor: 'red',
+                borderWidth: 1
+            },
+            {
+                label: 'temperature',
+                data: chart?.map(element => element.temperature),
+                backgroundColor: ['rgba(000, 000, 000, 1)'],
+                borderColor: ['rgba(000, 000, 000, 1)'],
+                borderWidth: 1
+            },
+            {
+                label: 'min alert',
+                data: [18, 18, 18, 18, 18],
+                fill: false,
+                backgroundColor: 'blue',
+                borderColor: 'blue',
+                borderWidth: 1
+            }
+        ]
     }
 
     var options = {
@@ -30,7 +48,14 @@ const TempGraph = () => {
             y: {
                 beginAtZero: false,
                 min: 14,
-                max: 32
+                max: 32,
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.1)', 
+                },
+                ticks: {
+                    stepSize: 2, 
+                },
+                position: 'left', // Ensure the y-axis is on the left side
             }
         },
         legend: {
