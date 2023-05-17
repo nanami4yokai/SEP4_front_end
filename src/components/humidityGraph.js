@@ -4,6 +4,9 @@ import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 // import myData from '../data/recordings-data.json' mock data source
 import "./TempGraph.css"
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import DropdownMenu from 'react-bootstrap/esm/DropdownMenu';
 
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
@@ -84,7 +87,7 @@ const HumidityGraph = () => {
   return (
     <div className='container'>
       <div className='top-row'>
-      <div className='container-name'>
+        <div className='container-name'>
           <div id='hum-circle'></div>
           <p id='name'>Humidity</p>
         </div>
@@ -101,6 +104,19 @@ const HumidityGraph = () => {
             <div id='current'></div>
             <p>Current</p>
           </div>
+        </div>
+        <div className='filter'>
+          <Dropdown>
+            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+            </Dropdown.Toggle>
+            <Dropdown.Menu variant='dark'>
+              <Dropdown.Item href="#/action-1" active>Real time</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item href="#/action-2">Daily</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Weekly</Dropdown.Item>
+              <Dropdown.Item href="#/action-4">Monthly</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
       </div>
       <br />
@@ -168,10 +184,10 @@ export default HumidityGraph;
 //                 min: 30,
 //                 max: 75,
 //                 grid: {
-//                     color: 'rgba(0, 0, 0, 0.1)', 
+//                     color: 'rgba(0, 0, 0, 0.1)',
 //                 },
 //                 ticks: {
-//                     stepSize: 5, 
+//                     stepSize: 5,
 //                 },
 //                 position: 'left', // Ensure the y-axis is on the left side
 //             }
