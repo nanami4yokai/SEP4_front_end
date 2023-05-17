@@ -28,3 +28,11 @@
     background-color: #82F58E;
     margin-top: 3px;
 }
+
+#hum-circle{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #60C2E1;
+    margin-top: 3px;
+}
