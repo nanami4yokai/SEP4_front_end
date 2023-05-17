@@ -13,7 +13,7 @@
     margin-left: 5px;
 }
 
-#notif-circle{
+#temp-circle{
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -21,3 +21,10 @@
     margin-top: 3px;
 }
 
+#co2-circle{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #82F58E;
+    margin-top: 3px;
+}

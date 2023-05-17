@@ -8,6 +8,7 @@ import HumidityGraph from './components/humidityGraph'
 import CO2Graph from './components/co2Graph';
 import RangeDisplay from './components/RangeDisplay';
 import TempAlert from './components/tempAlert';
+import CO2Alert from './components/co2Alert';
 import './App.css'
 
 function App() {
@@ -24,7 +25,10 @@ function App() {
       <br />
       <HumidityGraph />
       <div className='notifications'>
-        <TempAlert />
+        <div className='components'>
+          <TempAlert />
+          <CO2Alert />
+        </div>
       </div>
     </div>
   );
