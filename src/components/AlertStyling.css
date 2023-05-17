@@ -1,0 +1,23 @@
+.notification-alert {
+  border-radius: 25px;
+  height: 125px;
+}
+
+.notif-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.notif-header p{
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+#notif-circle{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #f03e3e;
+    margin-top: 3px;
+}
+
