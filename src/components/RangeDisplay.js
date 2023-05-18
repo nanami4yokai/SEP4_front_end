@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import './RangeDisplay.css';
 import param  from "../images/param.png";
+import axios from 'axios';
 
 function RangeDisplay() {
   const [temperatureRange, setTemperatureRange] = useState({ min: 18, max: 28 });
@@ -11,12 +12,24 @@ function RangeDisplay() {
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
-  const handleSave = () => {
-    // Validate and save the range values
+  const handleSave = async () => {
+    try {
+      const temperatureUrl = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/temperature/?min=${temperatureRange.min}&max=${temperatureRange.max}`;
+      const humidityUrl = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/humidity/?min=${humidityRange.min}&max=${humidityRange.max}`;
+      const co2Url = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/co2/?min=${co2Range.min}&max=${co2Range.max}`;
 
-    // Close the modal
+       Promise.all([
+        axios.post(temperatureUrl),
+        axios.post(humidityUrl),
+        axios.post(co2Url)
+      ]);
+      console.log('Data saved successfully');
+    } catch (error) {
+      console.error(error);
+    }
     setShowModal(false);
   };
+
 
   const handleEditParameters = () => {
     setEditMode(true);
