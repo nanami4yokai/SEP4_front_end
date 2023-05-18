@@ -27,6 +27,7 @@ function TempDisplay() {
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
 
+  const roundedTemperature = temperature !== null ? temperature.toFixed(1) : null;
 
 
   return (
@@ -36,7 +37,7 @@ function TempDisplay() {
       ) : (
         <div className="tempbox">
           <div className="temp">
-            {temperature !== null ? <h1>{temperature} C</h1> : <p>No data</p>}
+            {roundedTemperature !== null ? <h1>{roundedTemperature} C</h1> : <p>No data</p>}
           </div>
           <div className="temp-description">
             <p>Temperature</p>

@@ -27,6 +27,9 @@ const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
 return () => clearInterval(intervalId); // Cleanup on unmount
 }, []);
 
+const roundedHumidity = humidity !== null ? humidity.toFixed(0) : null;
+
+
 return (
 <div>
   {error ? (
@@ -34,7 +37,7 @@ return (
   ) : (
     <div className="humidbox">
       <div className="humid">
-        {humidity !== null ? <h1>{humidity} %</h1> : <p>No data</p>}
+        {roundedHumidity !== null ? <h1>{roundedHumidity} %</h1> : <p>No data</p>}
       </div>
       <div className="humid-description">
         <p>Humidity</p>

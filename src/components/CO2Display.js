@@ -27,6 +27,9 @@ const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
 return () => clearInterval(intervalId); // Cleanup on unmount
 }, []);
 
+const roundedCo2 = co2 !== null ? co2.toFixed(0) : null;
+
+
 return (
 <div>
   {error ? (
@@ -34,7 +37,7 @@ return (
   ) : (
     <div className="cobox">
       <div className="co">
-        {co2 !== null ? <h1>{co2} ppm</h1> : <p>No data</p>}
+        {roundedCo2 !== null ? <h1>{roundedCo2} ppm</h1> : <p>No data</p>}
       </div>
       <div className="co-description">
         <p>CO2</p>
