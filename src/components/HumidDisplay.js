@@ -22,9 +22,9 @@ const fetchData = async () => {
 
 fetchData();
 
-const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
+// const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
 
-return () => clearInterval(intervalId); // Cleanup on unmount
+// return () => clearInterval(intervalId); // Cleanup on unmount
 }, []);
 
 const roundedHumidity = humidity !== null ? humidity.toFixed(0) : null;
