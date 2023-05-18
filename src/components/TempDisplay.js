@@ -10,7 +10,7 @@ function TempDisplay() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?quantity=6');
+        const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
         if (response.data.length > 0) {
           const latestReading = response.data[0];
           setTemperature(latestReading.temperature);
@@ -27,6 +27,9 @@ function TempDisplay() {
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
 
+  const roundedTemperature = temperature !== null ? temperature.toFixed(1) : null;
+
+
   return (
     <div>
       {error ? (
@@ -34,7 +37,7 @@ function TempDisplay() {
       ) : (
         <div className="tempbox">
           <div className="temp">
-            {temperature !== null ? <h1>{temperature} C</h1> : <p>No data</p>}
+            {roundedTemperature !== null ? <h1>{roundedTemperature} C</h1> : <p>No data</p>}
           </div>
           <div className="temp-description">
             <p>Temperature</p>

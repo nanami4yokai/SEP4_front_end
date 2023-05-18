@@ -16,7 +16,7 @@ const CO2Graph = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?quantity=6');
+        const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
         const readings = response.data;
         const co2Data = readings.map((element) => ({
           co2: element.co2,
@@ -36,7 +36,7 @@ const CO2Graph = () => {
     datasets: [
       {
         label: 'max alert',
-        data: [80, 80, 80, 80, 80, 80],
+        data: [250, 250, 250, 250, 250, 250],
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
@@ -51,7 +51,7 @@ const CO2Graph = () => {
       },
       {
         label: 'min alert',
-        data: [25, 25, 25, 25, 25, 25],
+        data: [180, 180, 180, 180, 180, 180],
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
@@ -65,8 +65,8 @@ const CO2Graph = () => {
     scales: {
       y: {
         beginAtZero: true,
-        min: 10,
-        max: 100,
+        min: 150,
+        max: 300,
         grid: {
           color: 'rgba(0, 0, 0, 0.1)',
         },

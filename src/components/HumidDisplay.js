@@ -10,7 +10,7 @@ function HumidDisplay() {
 useEffect(() => {
 const fetchData = async () => {
   try {
-    const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?quantity=6');
+    const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
     if (response.data.length > 0) {
       const latestReading = response.data[0];
       setHumid(latestReading.humidity);
@@ -27,6 +27,9 @@ const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
 return () => clearInterval(intervalId); // Cleanup on unmount
 }, []);
 
+const roundedHumidity = humidity !== null ? humidity.toFixed(0) : null;
+
+
 return (
 <div>
   {error ? (
@@ -34,7 +37,7 @@ return (
   ) : (
     <div className="humidbox">
       <div className="humid">
-        {humidity !== null ? <h1>{humidity} %</h1> : <p>No data</p>}
+        {roundedHumidity !== null ? <h1>{roundedHumidity} %</h1> : <p>No data</p>}
       </div>
       <div className="humid-description">
         <p>Humidity</p>
