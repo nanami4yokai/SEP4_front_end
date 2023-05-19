@@ -4,19 +4,44 @@ import { Line } from 'react-chartjs-2'
 import axios from 'axios';
 // import myData from '../data/recordings-data.json' mock data source
 import "./TempGraph.css"
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import DropdownMenu from 'react-bootstrap/esm/DropdownMenu';
+import DataFilter from './filter';
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
 const CO2Graph = () => {
   const [chartData, setChartData] = useState(null);
+  const [filterOption, setFilterOption] = useState('realtime');
+  const [dataRange, setDataRange] = useState(24); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
+        let url = 'https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00';
+
+        if (filterOption === 'daily') {
+          // Logic to filter by day
+          const today = new Date();
+          const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
+          const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 0, 0, 0);
+          url += `&start=${startDate.toISOString()}&end=${endDate.toISOString()}`;
+          setDataRange(24);
+        } else if (filterOption === 'weekly') {
+          // Logic to filter by week
+          const today = new Date();
+          const startOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay(), 0, 0, 0);
+          const endOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay() + 7, 0, 0, 0);
+          url += `&start=${startOfWeek.toISOString()}&end=${endOfWeek.toISOString()}`;
+          setDataRange(168);
+        } else if (filterOption === 'monthly') {
+          // Logic to filter by month
+          const today = new Date();
+          const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0);
+          const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1, 0, 0, 0);
+          url += `&start=${startOfMonth.toISOString()}&end=${endOfMonth.toISOString()}`;
+          setDataRange(720);
+        }
+
+        const response = await axios.get(url);
         const readings = response.data;
         const co2Data = readings.map((element) => ({
           co2: element.co2,
@@ -29,14 +54,29 @@ const CO2Graph = () => {
     };
 
     fetchData();
-  }, []);
+  }, [filterOption]);
+
+  const filterDataByOption = (data) => {
+    if (filterOption === 'realtime') {
+      return data.map((element) => element.co2);
+    } else if (filterOption === 'daily') {
+      // Filter last day's data
+      return data.slice(-dataRange).map((element) => element.co2);
+    } else if (filterOption === 'weekly') {
+      // Filter last week's data
+      return data.slice(-dataRange).map((element) => element.co2);
+    } else if (filterOption === 'monthly') {
+      // Filter last month's data
+      return data.slice(-dataRange).map((element) => element.co2);
+    }
+  };
 
   const data = {
-    labels: chartData ? chartData.map((element) => element.timestamp) : [],
+    labels: chartData ? chartData.slice(-dataRange).map((element) => element.timestamp) : [],
     datasets: [
       {
         label: 'max alert',
-        data: [250, 250, 250, 250, 250, 250],
+        data: Array(dataRange).fill(250),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
@@ -44,14 +84,14 @@ const CO2Graph = () => {
       },
       {
         label: 'co2',
-        data: chartData ? chartData.map((element) => element.co2) : [],
+        data: chartData ? filterDataByOption(chartData) : [],
         backgroundColor: 'rgba(000, 000, 000, 1)',
         borderColor: 'rgba(000, 000, 000, 1)',
         borderWidth: 1
       },
       {
         label: 'min alert',
-        data: [180, 180, 180, 180, 180, 180],
+        data: Array(dataRange).fill(180),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
@@ -105,17 +145,11 @@ const CO2Graph = () => {
           </div>
         </div>
         <div className='filter'>
-          <Dropdown>
-            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-            </Dropdown.Toggle>
-            <Dropdown.Menu variant='dark'>
-              <Dropdown.Item href="#/action-1" active>Real time</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item href="#/action-2">Daily</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Weekly</Dropdown.Item>
-              <Dropdown.Item href="#/action-4">Monthly</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <DataFilter
+            filterOption={filterOption}
+            setFilterOption={setFilterOption}
+            setDataRange={setDataRange}
+          />
         </div>
       </div>
       <br />
@@ -131,6 +165,7 @@ const CO2Graph = () => {
         )}
       </div>
     </div>
+
   );
 };
 
