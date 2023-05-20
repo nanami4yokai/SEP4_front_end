@@ -99,3 +99,24 @@ input {
   background-color: transparent;
   font-size: 12px;
 }
+
+.modal-header {
+  justify-content: flex-start;
+}
+
+#reg-logo{
+  width: 33.5px;
+  height: 33.5px;
+}
+
+#cancel-btn{
+  background-color: transparent;
+  color: #213740;
+  border-color: transparent;
+}
+
+#reg-btn{
+  background-color: #44c851;
+  color: #000000;
+  border-color: #44c851;
+}
