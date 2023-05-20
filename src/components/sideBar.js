@@ -10,22 +10,22 @@ function Sidebar() {
   };
 
   return (
-      <div className={`sidebar ${ collapsed ? "" : "collapsed"}`}>
-        <button className="toggle-btn" onClick={toggleCollapse}>
-          {collapsed ? "<<" : ">>"}
-        </button>
+    <div className={`sidebar ${collapsed ? "" : "collapsed"}`}>
+      <button className="toggle-btn" onClick={toggleCollapse}>
+        {collapsed ? "<<" : ">>"}
+      </button>
       <div className="sidebar-content">
-      <img id="logo" src={chameleon} alt="Logo"></img>
+        <img id="logo" src={chameleon} alt="Logo"></img>
 
-      <div className="user">
-        <img id="avatar" src={user} alt="Avatar"></img>
-        <div className="user-info">
-          <p id="welcome-mssg">Welcome, admin</p>
-          <div className="user-info-bttns">
-            <button id="log-out">Log out</button>
-            <button id="edit-user">Edit user</button>
+        <div className="user">
+          <img id="avatar" src={user} alt="Avatar"></img>
+          <div className="user-info">
+            <p id="welcome-mssg">Welcome, admin</p>
+            <div className="user-info-bttns">
+              <button id="log-out">Log out</button>
+              <button id="edit-user">Edit user</button>
+            </div>
           </div>
-        </div>
         </div>
       </div>
       <hr id="hr" />

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
 import Sidebar from './components/sideBar';
 import TempDisplay from './components/TempDisplay';
@@ -12,6 +12,7 @@ import TempAlert from './components/tempAlert';
 import CO2Alert from './components/co2Alert';
 import HumidityAlert from './components/humidityAlert';
 import Login from './components/Login';
+import WelcomePage from './components/welcomePage';
 import './App.css'
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
       <Routes>
         <Route path='/.components/Login.js' element={<Login />} />
         <Route path='/' element={getMainPageComp()} />
+        <Route path='/welcome' element={getWelcomePageComp()} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
@@ -48,6 +51,21 @@ const getMainPageComp = () => {
         </div>
       </div>
     </>)
+}
+
+const getWelcomePageComp = () => {
+  return (
+    <>
+      <div className='Welcome'>
+        <Sidebar />
+        <WelcomePage />
+      </div>
+    </>
+  )
+}
+
+function NotFound() {
+  return <h1>404 - Page not found</h1>;
 }
 
 export default App;
