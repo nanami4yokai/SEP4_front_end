@@ -6,23 +6,54 @@ import param  from "../images/param.png";
 import axios from 'axios';
 
 function RangeDisplay() {
-  const [temperatureRange, setTemperatureRange] = useState({ min: 18, max: 28 });
-  const [co2Range, setCO2Range] = useState({ min: 980, max: 1010 });
-  const [humidityRange, setHumidityRange] = useState({ min: 45, max: 65 });
+  const [temperatureRange, setTemperatureRange] = useState({ min: 0, max: 0 });
+  const [co2Range, setCO2Range] = useState({ min: 0, max: 0 });
+  const [humidityRange, setHumidityRange] = useState({ min: 0, max: 0 });
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
+  // const handleSave = async () => {
+  //   try {
+  //     const temperatureUrl = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/temperature/?min=${temperatureRange.min}&max=${temperatureRange.max}`;
+  //     const humidityUrl = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/humidity/?min=${humidityRange.min}&max=${humidityRange.max}`;
+  //     const co2Url = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/co2/?min=${co2Range.min}&max=${co2Range.max}`;
+
+  //      Promise.all([
+  //       axios.post(temperatureUrl),
+  //       axios.post(humidityUrl),
+  //       axios.post(co2Url)
+  //     ]);
   const handleSave = async () => {
     try {
-      const temperatureUrl = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/temperature/?min=${temperatureRange.min}&max=${temperatureRange.max}`;
-      const humidityUrl = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/humidity/?min=${humidityRange.min}&max=${humidityRange.max}`;
-      const co2Url = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/co2/?min=${co2Range.min}&max=${co2Range.max}`;
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Proxy server URL
 
-       Promise.all([
-        axios.post(temperatureUrl),
-        axios.post(humidityUrl),
-        axios.post(co2Url)
-      ]);
+      const apiUrl = 'https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/limits/';
+
+      // const requestBody = {
+      // minTemperature: temperatureRange.min,
+      // maxTemperature: temperatureRange.max,
+      // minCO2: co2Range.min,
+      // maxCO2: co2Range.max,
+      // minHumidity: humidityRange.min,
+      // maxHumidity: humidityRange.max
+      // };
+
+      const requestData = {
+        minTemperature: temperatureRange.min,
+        maxTemperature: temperatureRange.max,
+        minCO2: co2Range.min,
+        maxCO2: co2Range.max,
+        minHumidity: humidityRange.min,
+        maxHumidity: humidityRange.max
+      };
+  
+      const response = await axios.post(proxyUrl + apiUrl, requestData, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      // await axios.post(apiUrl, requestBody);
       console.log('Data saved successfully');
     } catch (error) {
       console.error(error);
