@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import chameleon from "../images/chameleon.png";
-import user from "../images/user.png";
+import chameleon from "../../images/chameleon.png";
+import user from "../../images/user.png";
 
 function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);

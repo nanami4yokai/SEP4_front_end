@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
-import Sidebar from './components/sideBar';
-import TempDisplay from './components/TempDisplay';
-import CO2Display from './components/CO2Display';
-import HumidDisplay from './components/HumidDisplay';
-import TempGraph from './components/tempGraph';
-import HumidityGraph from './components/humidityGraph'
-import CO2Graph from './components/co2Graph';
-import RangeDisplay from './components/RangeDisplay';
-import TempAlert from './components/tempAlert';
-import CO2Alert from './components/co2Alert';
-import HumidityAlert from './components/humidityAlert';
-import Login from './components/Login';
-import WelcomePage from './components/welcomePage';
+import Sidebar from './components/Sidebar/sideBar';
+import TempDisplay from './components/Displays/TempDisplay';
+import CO2Display from './components/Displays/CO2Display';
+import HumidDisplay from './components/Displays/HumidDisplay';
+import TempGraph from './components/Graphs/tempGraph';
+import HumidityGraph from './components/Graphs/humidityGraph'
+import CO2Graph from './components/Graphs/co2Graph';
+import RangeDisplay from './components/RangeDisplay/RangeDisplay';
+import TempAlert from './components/Alerts/tempAlert';
+import CO2Alert from './components/Alerts/co2Alert';
+import HumidityAlert from './components/Alerts/humidityAlert';
+import Login from './components/Login/Login';
+import WelcomePage from './components/WelcomePage/welcomePage';
 import './App.css'
 
 function App() {
