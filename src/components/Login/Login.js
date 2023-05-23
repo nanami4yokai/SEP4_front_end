@@ -16,13 +16,44 @@ const Login = () => {
         setPassword(event.target.value);
     };
 
-    const handleLogin = () => {
-        // Handle login logic here
-        console.log('Login form submitted:', {
-            username,
-            password,
-        });
-    };
+    // const handleLogin = () => {
+    //     // Handle login logic here
+    //     console.log('Login form submitted:', {
+    //         username,
+    //         password,
+    //     });
+    // };
+
+    const handleLogin = async () => {
+        try {
+          // Send login request to API
+          const response = await fetch('/api/login', { 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+          });
+    
+          if (!response.ok) {
+            // Handle unsuccessful login
+            throw new Error('Login failed');
+          }
+    
+          // Get JWT token from response
+          const { token } = await response.json();
+    
+          // Store the JWT token in localStorage or sessionStorage
+          localStorage.setItem('jwtToken', token);
+    
+          // Perform any other necessary actions after successful login
+    
+          console.log('Login successful');
+        } catch (error) {
+          // Handle error during login
+          console.error('Login error:', error);
+        }
+      };
 
     const handleReg = () => {
         setShowModal(true);
@@ -32,13 +63,45 @@ const Login = () => {
         setShowModal(false);
     }
 
-    const handleRegistration = () => {
-        // Handle reg logic here
-        console.log('Registration form submitted:', {
-            username, password,
-        });
-        handleModalClose();
-    };
+    // const handleRegistration = () => {
+    //     // Handle reg logic here
+    //     console.log('Registration form submitted:', {
+    //         username, 
+    //         password,
+    //     });
+    //     handleModalClose();
+    // };
+
+    const handleRegistration = async () => {
+        try {
+          // Send registration request to API
+          const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+          });
+      
+          if (!response.ok) {
+            // Handle unsuccessful registration
+            throw new Error('Registration failed');
+          }
+      
+          // Get JWT token from response
+          const { token } = await response.json();
+      
+          // Store the JWT token in localStorage
+          localStorage.setItem('jwtToken', token);
+      
+          // Perform any other necessary actions after successful registration
+          console.log('Registration successful');
+          handleModalClose();
+        } catch (error) {
+          // Handle error during registration
+          console.error('Registration error:', error);
+        }
+      };
 
     return (
         <div className="background">
