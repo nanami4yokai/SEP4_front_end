@@ -7,7 +7,7 @@ import HumidDisplay from './components/Displays/HumidDisplay';
 import TempGraph from './components/Graphs/tempGraph';
 import HumidityGraph from './components/Graphs/humidityGraph'
 import CO2Graph from './components/Graphs/co2Graph';
-import RangeDisplay from './components/RangeDisplay';
+import RangeDisplay from './components/RangeDisplay/RangeDisplay';
 import TempAlert from './components/Alerts/tempAlert';
 import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
