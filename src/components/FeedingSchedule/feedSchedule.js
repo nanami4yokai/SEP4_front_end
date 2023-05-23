@@ -1,5 +1,5 @@
 import React from 'react';
-import foodTray from '../images/food-tray.png'
+import foodTray from '../../images/food-tray.png'
 import './feedSchedule.css'
 
 export default function FeedSchedule() {

@@ -3,8 +3,8 @@ import { Chart as ChartJS, LineElement, CategoryScale, PointElement, LinearScale
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 // import myData from '../data/recordings-data.json' mock data source
-import "./TempGraph.css"
-import DataFilter from './filter';
+import "./Graphs.css"
+import DataFilter from '../Filter/filter';
 
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);

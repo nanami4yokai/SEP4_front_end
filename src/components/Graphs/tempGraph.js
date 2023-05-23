@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, LineElement, CategoryScale, PointElement, LinearScale } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
-import "./TempGraph.css";
-import DataFilter from './filter';
+import "./Graphs.css";
+import DataFilter from '../Filter/filter';
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import './RangeDisplay.css';
-import param  from "../images/param.png";
+import param  from "../../images/param.png";
 import axios from 'axios';
 
 function RangeDisplay() {
