@@ -58,3 +58,43 @@
   background-color: transparent;
   font-size: 14px;
 }
+
+.fields {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.datetime,
+.amount,
+.frequency {
+  display: flex;
+  flex-direction: column;
+}
+
+.datetime p,
+.amount p,
+.frequency p {
+  margin-bottom: 5px;
+font-size: 18px;}
+
+.fields input {
+  width: 150px;
+}
+
+.footerBttns{
+  padding-top: 0;
+  justify-content: center;
+}
+
+#save-btn{
+  width: 80px;
+  background-color: #44c851;
+  border-color: #44c851;
+  color: black;
+}
+
+.input-field::placeholder {
+  color: #999999;
+  text-align: center;
+}
