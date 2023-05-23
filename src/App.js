@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
 import Sidebar from './components/sideBar';
-import TempDisplay from './components/TempDisplay';
-import CO2Display from './components/CO2Display';
-import HumidDisplay from './components/HumidDisplay';
+import TempDisplay from './components/Displays/TempDisplay';
+import CO2Display from './components/Displays/CO2Display';
+import HumidDisplay from './components/Displays/HumidDisplay';
 import TempGraph from './components/tempGraph';
 import HumidityGraph from './components/humidityGraph'
 import CO2Graph from './components/co2Graph';
