@@ -11,7 +11,7 @@ import RangeDisplay from './components/RangeDisplay/RangeDisplay';
 import TempAlert from './components/Alerts/tempAlert';
 import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
-import Login from './components/Login';
+import Login from './components/Login/Login';
 import WelcomePage from './components/WelcomePage/welcomePage';
 import './App.css'
 

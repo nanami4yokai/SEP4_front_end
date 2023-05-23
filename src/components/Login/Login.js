@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css'
 import { Modal, Button } from 'react-bootstrap'
-import registration from '../images/registration.png'
+import registration from '../../images/registration.png'
 
 const Login = () => {
     const [username, setUsername] = useState('');
