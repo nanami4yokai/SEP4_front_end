@@ -8,9 +8,9 @@ import TempGraph from './components/tempGraph';
 import HumidityGraph from './components/humidityGraph'
 import CO2Graph from './components/co2Graph';
 import RangeDisplay from './components/RangeDisplay';
-import TempAlert from './components/tempAlert';
-import CO2Alert from './components/co2Alert';
-import HumidityAlert from './components/humidityAlert';
+import TempAlert from './components/Alerts/tempAlert';
+import CO2Alert from './components/Alerts/co2Alert';
+import HumidityAlert from './components/Alerts/humidityAlert';
 import Login from './components/Login';
 import WelcomePage from './components/welcomePage';
 import './App.css'
