@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 // import myData from '../data/recordings-data.json' mock data source
 import "./Graphs.css"
-import DataFilter from '../filter';
+import DataFilter from '../Filter/filter';
 
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
