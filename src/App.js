@@ -12,7 +12,7 @@ import TempAlert from './components/Alerts/tempAlert';
 import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
 import Login from './components/Login';
-import WelcomePage from './components/welcomePage';
+import WelcomePage from './components/WelcomePage/welcomePage';
 import './App.css'
 
 function App() {

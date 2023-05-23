@@ -1,6 +1,6 @@
 import React from 'react'
 import './welcomePage.css'
-import pets from '../images/pets.png'
+import pets from '../../images/pets.png'
 
 export default function WelcomePage() {
     return (
