@@ -1,0 +1,60 @@
+.schedule {
+  display: flex;
+  flex-direction: row;
+}
+
+.feedingSch {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+#feedingSch-title {
+  font-size: 25px;
+  margin-left: 5px;
+}
+
+#feeding-logo {
+  width: 33.5px;
+  height: 33.5px;
+}
+
+.details p {
+  margin-bottom: 0;
+}
+
+.feedingSchButtons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  justify-content: center;
+}
+
+#feedBttn {
+  width: 155px;
+  height: 60px;
+  font-size: 25px;
+  border-radius: 25px;
+  border-style: solid;
+  border-color: #44c851;
+  background-color: #44c851;
+}
+
+.feedingSchButtons #feedBttn:hover {
+  background-color: #2db73a;
+}
+
+.feedingSchButtons #editFeedBttn:hover {
+  color: #2db73a;
+}
+
+#editFeedBttn {
+  margin-top: 3px;
+  border-style: none;
+  background-color: transparent;
+  font-size: 14px;
+}

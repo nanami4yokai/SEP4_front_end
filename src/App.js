@@ -13,6 +13,7 @@ import CO2Alert from './components/co2Alert';
 import HumidityAlert from './components/humidityAlert';
 import Login from './components/Login';
 import WelcomePage from './components/welcomePage';
+import FeedSchedule from './components/feedSchedule';
 import './App.css'
 
 function App() {
@@ -48,6 +49,9 @@ const getMainPageComp = () => {
             <CO2Alert />
             <HumidityAlert />
           </div>
+        </div>
+        <div className='feedingManagement'>
+          <FeedSchedule />
         </div>
       </div>
     </>)
