@@ -7,3 +7,9 @@
 .notifications .components{
     display: block;
 }
+
+.feedingManagement{
+    position: absolute;
+    top: 30px;
+    right: 10px;
+}
