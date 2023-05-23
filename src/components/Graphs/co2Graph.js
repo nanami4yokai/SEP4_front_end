@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Chart as ChartJS, LineElement, CategoryScale, PointElement, LinearScale } from 'chart.js'
-import { Line } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2'
 import axios from 'axios';
 // import myData from '../data/recordings-data.json' mock data source
-import "./TempGraph.css"
-import DataFilter from './filter';
-
+import "./Graphs.css"
+import DataFilter from '../filter';
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
-const HumidityGraph = () => {
+const CO2Graph = () => {
   const [chartData, setChartData] = useState(null);
   const [filterOption, setFilterOption] = useState('realtime');
   const [dataRange, setDataRange] = useState(24); 
@@ -44,11 +43,11 @@ const HumidityGraph = () => {
 
         const response = await axios.get(url);
         const readings = response.data;
-        const humidityData = readings.map((element) => ({
-          humidity: element.humidity,
+        const co2Data = readings.map((element) => ({
+          co2: element.co2,
           timestamp: element.timestamp
         }));
-        setChartData(humidityData);
+        setChartData(co2Data);
       } catch (error) {
         console.log(error);
       }
@@ -59,16 +58,16 @@ const HumidityGraph = () => {
 
   const filterDataByOption = (data) => {
     if (filterOption === 'realtime') {
-      return data.map((element) => element.humidity);
+      return data.map((element) => element.co2);
     } else if (filterOption === 'daily') {
       // Filter last day's data
-      return data.slice(-dataRange).map((element) => element.humidity);
+      return data.slice(-dataRange).map((element) => element.co2);
     } else if (filterOption === 'weekly') {
       // Filter last week's data
-      return data.slice(-dataRange).map((element) => element.humidity);
+      return data.slice(-dataRange).map((element) => element.co2);
     } else if (filterOption === 'monthly') {
       // Filter last month's data
-      return data.slice(-dataRange).map((element) => element.humidity);
+      return data.slice(-dataRange).map((element) => element.co2);
     }
   };
 
@@ -77,14 +76,14 @@ const HumidityGraph = () => {
     datasets: [
       {
         label: 'max alert',
-        data: Array(dataRange).fill(65),
+        data: Array(dataRange).fill(250),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
         borderWidth: 1
       },
       {
-        label: 'humidity',
+        label: 'co2',
         data: chartData ? filterDataByOption(chartData) : [],
         backgroundColor: 'rgba(000, 000, 000, 1)',
         borderColor: 'rgba(000, 000, 000, 1)',
@@ -92,7 +91,7 @@ const HumidityGraph = () => {
       },
       {
         label: 'min alert',
-        data: Array(dataRange).fill(45),
+        data: Array(dataRange).fill(180),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
@@ -105,9 +104,9 @@ const HumidityGraph = () => {
     maintainAspectRatio: false,
     scales: {
       y: {
-        beginAtZero: false,
-        min: 30,
-        max: 75,
+        beginAtZero: true,
+        min: 150,
+        max: 300,
         grid: {
           color: 'rgba(0, 0, 0, 0.1)',
         },
@@ -128,8 +127,8 @@ const HumidityGraph = () => {
     <div className='container'>
       <div className='top-row'>
         <div className='container-name'>
-          <div id='hum-circle'></div>
-          <p id='name'>Humidity</p>
+          <div id='co2-circle'></div>
+          <p id='name'>CO2</p>
         </div>
         <div className='alerts'>
           <div className='alert-max'>
@@ -166,15 +165,16 @@ const HumidityGraph = () => {
         )}
       </div>
     </div>
+
   );
 };
 
-export default HumidityGraph;
+export default CO2Graph;
 
-// Code to work with mocup data
+// Code to work with Mockup data
 // ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement)
 
-// const HumidityGraph = () => {
+// const CO2Graph = () => {
 //     const [chart, setChart] = useState([]);
 
 //     useEffect(() => {
@@ -186,7 +186,7 @@ export default HumidityGraph;
 //         datasets: [
 //             {
 //                 label: 'max alert',
-//                 data: [65, 65, 65, 65, 65],
+//                 data: [1010, 1010, 1010, 1010, 1010],
 //                 fill: false,
 //                 backgroundColor: 'red',
 //                 borderColor: 'red',
@@ -194,14 +194,14 @@ export default HumidityGraph;
 //             },
 //             {
 //                 label: 'humidity',
-//                 data: chart?.map(element => element.humidity),
+//                 data: chart?.map(element => element.co2),
 //                 backgroundColor: ['rgba(000, 000, 000, 1)'],
 //                 borderColor: ['rgba(000, 000, 000, 1)'],
 //                 borderWidth: 1
 //             },
 //             {
 //                 label: 'min alert',
-//                 data: [45, 45, 45, 45, 45],
+//                 data: [980, 980, 980, 980, 980],
 //                 fill: false,
 //                 backgroundColor: 'blue',
 //                 borderColor: 'blue',
@@ -215,8 +215,8 @@ export default HumidityGraph;
 //         scales: {
 //             y: {
 //                 beginAtZero: false,
-//                 min: 30,
-//                 max: 75,
+//                 min: 970,
+//                 max: 1015,
 //                 grid: {
 //                     color: 'rgba(0, 0, 0, 0.1)',
 //                 },
@@ -237,8 +237,8 @@ export default HumidityGraph;
 //         <div className='container'>
 //             <div className='top-row'>
 //                 <div className='container-name'>
-//                     <div id='hum-circle'></div>
-//                     <p id='name'>Humidity</p>
+//                     <div id='co2-circle'></div>
+//                     <p id='name'>CO2</p>
 //                 </div>
 //                 <div className='alerts'>
 //                     <div className='alert-max'>
@@ -267,4 +267,4 @@ export default HumidityGraph;
 //     )
 // }
 
-// export default HumidityGraph;
+// export default CO2Graph;
