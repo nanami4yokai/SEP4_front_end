@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const useTemperatureData = () => {
-    const [temperatureData, setTemperatureData] = useState([]);
-    const [error, setError] = useState(null);
+export const useTempData = () => {
+    const [temperatureData, setTemperatureData] = useState(null);
+    const [tempError, setError] = useState(null);
 
     useEffect(() => {
         const fetchTemperatureData = async () => {
@@ -21,5 +21,5 @@ export const useTemperatureData = () => {
         fetchTemperatureData();
     }, []);
 
-    return { temperatureData, error };
+    return { temperatureData, tempError };
 };

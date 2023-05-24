@@ -1,39 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import './Displays.css';
 import axios from 'axios';
+import { useHumData } from './fetchingData/useHumData';
 // import myData from '../data/recordings-data.json' mockup access
 
 function HumidDisplay() {
-    const [humidity, setHumid] = useState(null);
-    const [error, setError] = useState(null);
+    const { humidityData, humError} = useHumData();
 
-// useEffect(() => {
-// const fetchData = async () => {
-//   try {
-//     const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
-//     if (response.data.length > 0) {
-//       const latestReading = response.data[0];
-//       setHumid(latestReading.humidity);
-//     }
-//   } catch (error) {
-//     setError(error.message);
-//   }
-// };
 
-// fetchData();
-
-// // const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
-
-// // return () => clearInterval(intervalId); // Cleanup on unmount
-// }, []);
-
-const roundedHumidity = humidity !== null ? humidity.toFixed(0) : null;
+const roundedHumidity = humidityData !== null ? humidityData.toFixed(0) : null;
 
 
 return (
 <div>
-  {error ? (
-    <p>Error: {error}</p>
+  {humError ? (
+    <p>Error: {humError}</p>
   ) : (
     <div className="humidbox">
       <div className="humid">

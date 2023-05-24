@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import Sidebar from './components/Sidebar/sideBar';
-import { useTemperatureData } from './components/Displays/fetchingData/useTempData';
+import { useTempData } from './components/Displays/fetchingData/useTempData';
 import { useCO2Data } from './components/Displays/fetchingData/useCO2Data'
 import { useHumData } from './components/Displays/fetchingData/useHumData';
 import { useTempChartData } from './components/Graphs/fetchingData/useTempChartData';
@@ -39,7 +39,7 @@ const Terrarium = () => {
     //     fetchTerrariumData();
     // }, [terrariumId]);
 
-    const { temperatureData, tempError } = useTemperatureData();
+    const { temperatureData, tempError } = useTempData();
     const { co2Data, co2Error } = useCO2Data();
     const { humidityData, humError } = useHumData();
 
