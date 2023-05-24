@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar/sideBar';
 import TempDisplay from './components/Displays/TempDisplay';
 import CO2Display from './components/Displays/CO2Display';
@@ -16,12 +16,18 @@ import WelcomePage from './components/WelcomePage/welcomePage';
 import FeedSchedule from './components/FeedingSchedule/feedSchedule'
 import './App.css'
 
+import Terrarium from './Terrarium'
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/.components/Login.js' element={<Login />} />
-        <Route path='/' element={getMainPageComp()} />
+        {/* maybe if the api will work for once, have to modify this
+          <Route path="/" element={<Navigate to="/terrarium/1" />} />
+          <Route path="/terrarium/:terrariumId" element={<Terrarium />} />
+        */}
+        <Route path='/' element={<Terrarium />} />
         <Route path='/welcome' element={getWelcomePageComp()} />
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -29,33 +35,33 @@ function App() {
   );
 }
 
-const getMainPageComp = () => {
-  return (
-    <>
-      <div className="Main">
-        <Sidebar />
-        <RangeDisplay />
-        <TempDisplay />
-        <CO2Display />
-        <HumidDisplay />
-        <TempGraph />
-        <br />
-        <CO2Graph />
-        <br />
-        <HumidityGraph />
-        <div className='notifications'>
-          <div className='components'>
-            <TempAlert />
-            <CO2Alert />
-            <HumidityAlert />
-          </div>
-        </div>
-        <div className='feedingManagement'>
-          <FeedSchedule />
-        </div>
-      </div>
-    </>)
-}
+// const getMainPageComp = () => {
+//   return (
+//     <>
+//       <div className="Main">
+//         <Sidebar />
+//         <RangeDisplay />
+//         <TempDisplay />
+//         <CO2Display />
+//         <HumidDisplay />
+//         <TempGraph />
+//         <br />
+//         <CO2Graph />
+//         <br />
+//         <HumidityGraph />
+//         <div className='notifications'>
+//           <div className='components'>
+//             <TempAlert />
+//             <CO2Alert />
+//             <HumidityAlert />
+//           </div>
+//         </div>
+//         <div className='feedingManagement'>
+//           <FeedSchedule />
+//         </div>
+//       </div>
+//     </>)
+// }
 
 const getWelcomePageComp = () => {
   return (
