@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar/sideBar';
 import TempDisplay from './components/Displays/TempDisplay';
 import CO2Display from './components/Displays/CO2Display';
@@ -23,6 +23,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/.components/Login.js' element={<Login />} />
+        {/* maybe if the api will work for once, have to modify this
+          <Route path="/" element={<Navigate to="/terrarium/1" />} />
+          <Route path="/terrarium/:terrariumId" element={<Terrarium />} />
+        */}
         <Route path='/' element={<Terrarium />} />
         <Route path='/welcome' element={getWelcomePageComp()} />
         <Route path="*" element={<NotFound />} />

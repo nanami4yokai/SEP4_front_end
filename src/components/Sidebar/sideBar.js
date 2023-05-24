@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import chameleon from "../../images/chameleon.png";
 import user from "../../images/user.png";
@@ -32,7 +33,7 @@ function Sidebar() {
 
       <ul className="sidebar-nav">
         <li>
-          <a href="/">Terrarium 1</a>
+          <a href="/">Terrarium 1</a> {/*<Link to="/terrarium/1">Terrarium 1</Link>*/}
         </li>
         <li>
           <a href="/">Terrarium 2</a>
