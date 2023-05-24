@@ -128,3 +128,51 @@
 .add-terrarium button:hover {
   color: #44c851;
 }
+
+#plusLogo{
+  width: 33.5px;
+  height: 33.5px;
+}
+
+.name,
+.id {
+  display: flex;
+  flex-direction: column;
+}
+
+.name p,
+.id p {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.fields {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+
+.fields input {
+  width: 150px;
+}
+
+.footerBttns {
+  padding-top: 0;
+  justify-content: center;
+}
+
+#save-btn {
+  width: 80px;
+  background-color: #44c851;
+  border-color: #44c851;
+  color: black;
+}
+
+.input-field::placeholder {
+  color: #999999;
+  text-align: center;
+}
+
+.input-field{
+  color: #000;
+}
