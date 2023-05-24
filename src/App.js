@@ -16,12 +16,14 @@ import WelcomePage from './components/WelcomePage/welcomePage';
 import FeedSchedule from './components/FeedingSchedule/feedSchedule'
 import './App.css'
 
+import Terrarium from './Terrarium'
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/.components/Login.js' element={<Login />} />
-        <Route path='/' element={getMainPageComp()} />
+        <Route path='/' element={<Terrarium />} />
         <Route path='/welcome' element={getWelcomePageComp()} />
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -29,33 +31,33 @@ function App() {
   );
 }
 
-const getMainPageComp = () => {
-  return (
-    <>
-      <div className="Main">
-        <Sidebar />
-        <RangeDisplay />
-        <TempDisplay />
-        <CO2Display />
-        <HumidDisplay />
-        <TempGraph />
-        <br />
-        <CO2Graph />
-        <br />
-        <HumidityGraph />
-        <div className='notifications'>
-          <div className='components'>
-            <TempAlert />
-            <CO2Alert />
-            <HumidityAlert />
-          </div>
-        </div>
-        <div className='feedingManagement'>
-          <FeedSchedule />
-        </div>
-      </div>
-    </>)
-}
+// const getMainPageComp = () => {
+//   return (
+//     <>
+//       <div className="Main">
+//         <Sidebar />
+//         <RangeDisplay />
+//         <TempDisplay />
+//         <CO2Display />
+//         <HumidDisplay />
+//         <TempGraph />
+//         <br />
+//         <CO2Graph />
+//         <br />
+//         <HumidityGraph />
+//         <div className='notifications'>
+//           <div className='components'>
+//             <TempAlert />
+//             <CO2Alert />
+//             <HumidityAlert />
+//           </div>
+//         </div>
+//         <div className='feedingManagement'>
+//           <FeedSchedule />
+//         </div>
+//       </div>
+//     </>)
+// }
 
 const getWelcomePageComp = () => {
   return (

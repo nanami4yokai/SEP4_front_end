@@ -7,25 +7,25 @@ function TempDisplay() {
   const [temperature, setTemperature] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
-        if (response.data.length > 0) {
-          const latestReading = response.data[0];
-          setTemperature(latestReading.temperature);
-        }
-      } catch (error) {
-        setError(error.message);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
+  //       if (response.data.length > 0) {
+  //         const latestReading = response.data[0];
+  //         setTemperature(latestReading.temperature);
+  //       }
+  //     } catch (error) {
+  //       setError(error.message);
+  //     }
+  //   };
 
-    fetchData();
+  //   fetchData();
 
-    // const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
+  //   // const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
 
-    // return () => clearInterval(intervalId); // Cleanup on unmount
-  }, []);
+  //   // return () => clearInterval(intervalId); // Cleanup on unmount
+  // }, []);
 
   const roundedTemperature = temperature !== null ? temperature.toFixed(1) : null;
 
