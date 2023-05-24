@@ -1,39 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import './Displays.css';
 import axios from 'axios';
+import { useCO2Data } from './fetchingData/useCO2Data';
 // import myData from '../data/recordings-data.json' mockup file access
 
 function CO2Display() {
-  const [co2, setCo2] = useState(null);
-  const [error, setError] = useState(null);
+  const { co2Data, co2Error } = useCO2Data();
 
-// useEffect(() => {
-// const fetchData = async () => {
-//   try {
-//     const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
-//     if (response.data.length > 0) {
-//       const latestReading = response.data[0];
-//       setCo2(latestReading.co2);
-//     }
-//   } catch (error) {
-//     setError(error.message);
-//   }
-// };
 
-// fetchData();
-
-// // const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
-
-// // return () => clearInterval(intervalId); // Cleanup on unmount
-// }, []);
-
-const roundedCo2 = co2 !== null ? co2.toFixed(0) : null;
+const roundedCo2 = co2Data !== null ? co2Data.toFixed(0) : null;
 
 
 return (
 <div>
-  {error ? (
-    <p>Error: {error}</p>
+  {co2Error ? (
+    <p>Error: {co2Error}</p>
   ) : (
     <div className="cobox">
       <div className="co">

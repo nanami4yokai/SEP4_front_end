@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const useCO2Data = () => {
-    const [co2Data, setCo2Data] = useState([]);
-    const [error, setError] = useState(null);
+    const [co2Data, setCo2Data] = useState(null);
+    const [co2Error, setCo2Error] = useState(null);
 
     useEffect(() => {
         const fetchCO2Data = async () => {
@@ -14,12 +14,16 @@ export const useCO2Data = () => {
                     setCo2Data(latestReading.co2);
                 }
             } catch (error) {
-                setError(error.message);
+                setCo2Error(error.message);
             }
         };
 
         fetchCO2Data();
+
+        // const intervalId = setInterval(fetchCO2Data, 20000);
+
+        //  return () => clearInterval(intervalId); 20 sec refresh
     }, []);
 
-    return { co2Data, error };
+    return { co2Data, co2Error };
 }

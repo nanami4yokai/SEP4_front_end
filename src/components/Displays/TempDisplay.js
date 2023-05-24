@@ -1,39 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import './Displays.css';
 import axios from 'axios';
+import { useTempData } from './fetchingData/useTempData';
 // import myData from '../data/recordings-data.json' mockup file 
 
 function TempDisplay() {
-  const [temperature, setTemperature] = useState(null);
-  const [error, setError] = useState(null);
+  const { temperatureData, tempError} = useTempData();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
-  //       if (response.data.length > 0) {
-  //         const latestReading = response.data[0];
-  //         setTemperature(latestReading.temperature);
-  //       }
-  //     } catch (error) {
-  //       setError(error.message);
-  //     }
-  //   };
 
-  //   fetchData();
-
-  //   // const intervalId = setInterval(fetchData, 20000); // Update every 20 seconds
-
-  //   // return () => clearInterval(intervalId); // Cleanup on unmount
-  // }, []);
-
-  const roundedTemperature = temperature !== null ? temperature.toFixed(1) : null;
+  const roundedTemperature = temperatureData !== null ? temperatureData.toFixed(1) : null;
 
 
   return (
     <div>
-      {error ? (
-        <p>Error: {error}</p>
+      {tempError ? (
+        <p>Error: {tempError}</p>
       ) : (
         <div className="tempbox">
           <div className="temp">

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const useHumData = () => {
-    const [humidityData, setHumData] = useState([]);
-    const [error, setError] = useState(null);
+    const [humidityData, setHumData] = useState(null);
+    const [humError, setError] = useState(null);
 
     useEffect(() => {
         const fetchHumData = async () => {
@@ -19,7 +19,10 @@ export const useHumData = () => {
         };
 
         fetchHumData();
+         // const intervalId = setInterval(fetchHumData, 20000);
+
+        //  return () => clearInterval(intervalId); 20 sec refresh
     }, []);
 
-    return { humidityData, error };
+    return { humidityData, humError };
 }
