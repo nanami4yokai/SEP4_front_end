@@ -17,7 +17,6 @@ import HumidityGraph from './components/Graphs/humidityGraph'
 import TempAlert from './components/Alerts/tempAlert';
 import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
-import FeedSchedule from './components/FeedingSchedule/feedSchedule'
 import './App.css'
 
 const Terrarium = () => {
@@ -71,9 +70,6 @@ const Terrarium = () => {
                     <CO2Alert />
                     <HumidityAlert />
                 </div>
-            </div>
-            <div className="feedingManagement">
-                <FeedSchedule />
             </div>
         </div >
     );

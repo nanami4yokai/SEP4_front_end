@@ -13,7 +13,6 @@ import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
 import Login from './components/Login/Login';
 import WelcomePage from './components/WelcomePage/welcomePage';
-import FeedSchedule from './components/FeedingSchedule/feedSchedule'
 import './App.css'
 
 import Terrarium from './Terrarium'
