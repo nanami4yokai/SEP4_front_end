@@ -4,9 +4,14 @@ import { Modal, Button } from 'react-bootstrap'
 import registration from '../../images/registration.png'
 
 const Login = () => {
+    const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showModal, setShowModal] = useState(false);
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -148,6 +153,17 @@ const Login = () => {
                     <Modal.Title>Registration</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <label htmlFor="registration-email">
+                        <b>Email:</b>
+                    </label>
+                    <input
+                        type="text"
+                        id="registration-email"
+                        name="registration-email"
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
+                    <br />
                     <label htmlFor="registration-username">
                         <b>Username:</b>
                     </label>
