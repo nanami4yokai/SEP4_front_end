@@ -17,6 +17,7 @@ import HumidityGraph from './components/Graphs/humidityGraph'
 import TempAlert from './components/Alerts/tempAlert';
 import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
+import DeleteTerrarium from './components/DeleteTerrarium/DeleteTerrarium';
 import './App.css'
 
 const Terrarium = () => {
@@ -55,6 +56,7 @@ const Terrarium = () => {
     return (
         <div className="Main">
             <Sidebar />
+            <DeleteTerrarium/>
             <RangeDisplay />
             <TempDisplay temperatureData={temperatureData} error={tempError} />
             <CO2Display co2Data={co2Data} error={co2Error} />
