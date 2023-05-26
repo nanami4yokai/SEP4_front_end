@@ -1,0 +1,12 @@
+.delete-terrarium{
+    display: flex;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 1250px;
+font-size: 20px;
+}
+
+#delete-bttn{
+    border-style: none;
+    background-color: transparent;
+}
