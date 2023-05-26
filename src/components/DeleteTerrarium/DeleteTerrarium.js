@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Button } from 'react-bootstrap'
 import './DeleteTerrarium.css'
+import axios from "axios";
 
-export default function DeleteTerrarium() {
+export default function DeleteTerrarium({terrariumId}) {
     const [showModal, setShowModal] = useState(false);
 
     const deleteTerrarium = () => {
@@ -13,7 +14,31 @@ export default function DeleteTerrarium() {
         setShowModal(false);
     }
 
-    const handleTerrariumDelete = () => { }
+    const handleTerrariumDelete = async () => { 
+        try {
+            const token = localStorage.getItem('jwtToken'); 
+             const config = {
+             headers: {
+            'Authorization': `Bearer ${token}`
+             }
+            };
+            const response = await axios.delete('https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/delete', {
+                headers: {
+                    'Authorization': `Bearer ${token}`                },
+                params: {
+                    terrariumId: terrariumId
+                }
+            });
+
+            if (response.status === 200) {
+                console.log('Terrarium deleted');
+            } else {
+                console.error('Failed to delete terrarium');
+            }
+        } catch (error) {
+            console.error('Error deleting terrarium:', error);
+        }
+    }
 
     return (
         <div>

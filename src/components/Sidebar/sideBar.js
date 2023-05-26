@@ -5,8 +5,9 @@ import "./Sidebar.css";
 import chameleon from "../../images/chameleon.png";
 import user from "../../images/user.png";
 import plus from '../../images/plus.png'
+import axios from "axios";
 
-function Sidebar() {
+function Sidebar({terrariums: sidebarTerrariums}) {
   const [collapsed, setCollapsed] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState('');
@@ -29,7 +30,23 @@ function Sidebar() {
     const newTerrarium = {
       id: id,
       name: name
-    };
+    }; 
+    const token = localStorage.getItem('jwtToken'); 
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }; 
+    axios.post('https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/create', newTerrarium, config)
+    .then(response => {
+      console.log('Terrarium created:', response.data);
+      setTerrariums([...terrariums, newTerrarium]);
+      handleModalClose();
+    })
+      .catch(error => {
+        console.error('Error creating terrarium:', error);
+      });
+
     setTerrariums([...terrariums, newTerrarium]);
     handleModalClose();
   };
@@ -47,7 +64,6 @@ function Sidebar() {
   }
 
   const handleInputs = () => {
-    // Handle input logic here
     console.log('Input form submitted:', {
       name,
       id,

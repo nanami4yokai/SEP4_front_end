@@ -18,10 +18,16 @@ import './App.css'
 import Terrarium from './Terrarium'
 
 function App() {
+  const [terrariums, setTerrariums] = useState([]);
+
+  const handleTerrariumsUpdate = (terrariumsData) => {
+    setTerrariums(terrariumsData);
+  };
   return (
+    
     <BrowserRouter>
       <Routes>
-        <Route path='/.components/Login.js' element={<Login />} />
+        <Route path='/.components/Login.js' element={<Login onTerrariumsUpdate={handleTerrariumsUpdate} />} />
         {/* maybe if the api will work for once, have to modify this
           <Route path="/" element={<Navigate to="/terrarium/1" />} />
           <Route path="/terrarium/:terrariumId" element={<Terrarium />} />
@@ -29,8 +35,10 @@ function App() {
         <Route path='/' element={<Terrarium />} />
         <Route path='/welcome' element={getWelcomePageComp()} />
         <Route path="*" element={<NotFound />} />
+        
       </Routes>
     </BrowserRouter>
+  
   );
 }
 
@@ -72,6 +80,7 @@ const getWelcomePageComp = () => {
     </>
   )
 }
+
 
 function NotFound() {
   return <h1>404 - Page not found</h1>;
