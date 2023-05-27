@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './Login.css';
-import { Modal, Button } from 'react-bootstrap';
-import registration from '../../images/registration.png';
+import './Login.css'
+import { Modal, Button } from 'react-bootstrap'
+import registration from '../../images/registration.png'
+import axios from 'axios';
 
-const Login = () => {
+const Login = ({ onTerrariumsUpdate }) => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +22,8 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
+
+
   const handleLogin = async () => {
     try {
       const response = await fetch('https://terrasense-service-dot-terrasense.ew.r.appspot.com/public/login', {
@@ -36,9 +39,10 @@ const Login = () => {
       }
 
       const { token } = await response.json();
-      localStorage.setItem('jwtToken', token);
-      console.log('Login successful');
 
+      localStorage.setItem('jwtToken', token);
+
+      console.log('Login successful');
       const authenticatedRequest = new Request('https://terrasense-service-dot-terrasense.ew.r.appspot.com/public/register', {
         method: 'GET',
         headers: {
@@ -55,6 +59,18 @@ const Login = () => {
       } else {
         console.error('Authenticated request failed');
       }
+
+      const terrariumsResponse = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/all', authenticatedRequest);
+
+      if (terrariumsResponse.status === 200) {
+        const terrariumsData = terrariumsResponse.data;
+        console.log('Terrariums:', terrariumsData);
+        // Update the terrariums in the parent component
+        onTerrariumsUpdate(terrariumsData);
+      } else {
+        console.error('Failed to fetch terrariums');
+      }
+
     } catch (error) {
       console.error('Login error:', error);
     }

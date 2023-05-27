@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from 'react-bootstrap'
 import './DeleteTerrarium.css'
 
-export default function DeleteTerrarium() {
+export default function DeleteTerrarium({ terrariumId }) {
     const [showModal, setShowModal] = useState(false);
 
     const deleteTerrarium = () => {
@@ -13,7 +13,22 @@ export default function DeleteTerrarium() {
         setShowModal(false);
     }
 
-    const handleTerrariumDelete = () => { }
+    const handleTerrariumDelete = () => {
+        const token = localStorage.getItem('jwtToken');
+        const xhr = new XMLHttpRequest();
+        xhr.open('DELETE', 'https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/delete');
+        xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log('Terrarium deleted');
+                } else {
+                    console.error('Failed to delete terrarium');
+                }
+            }
+        };
+        xhr.send(JSON.stringify({ terrariumId: terrariumId }));
+    }
 
     return (
         <div>
@@ -22,7 +37,7 @@ export default function DeleteTerrarium() {
             </div>
 
             {/* Delete terrarium Modal */}
-            <Modal show={showModal} onHide={handleModalClose} centered>
+            <Modal show={showModal} onHide={handleModalClose} centered data-testid="confirmation-modal">
                 <Modal.Header closeButton>
                     <Modal.Title>Confirmation</Modal.Title>
                 </Modal.Header>

@@ -7,10 +7,14 @@ module.exports = {
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'lcov'],
     transform: {
-        '^.+\\.jsx?$': 'babel-jest'
+      '^.+\\.jsx?$': 'babel-jest',
     },
     transformIgnorePatterns: [
-        '/node_modules/(?!(axios)/)','node_modules/(vue-demi)'
+      '/node_modules/(?!(axios)/)',
+      'node_modules/(vue-demi)',
     ],
-};
-
+    moduleNameMapper: {
+      '^axios$': '<rootDir>/mocks/axios.js',
+    },
+  };
+  
