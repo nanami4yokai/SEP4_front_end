@@ -93,7 +93,6 @@ function Sidebar({terrariums: sidebarTerrariums}) {
             <p id="welcome-mssg">Welcome, admin</p>
             <div className="user-info-bttns">
               <button id="log-out" onClick={handleLogout}>Log out</button>
-              <button id="edit-user">Edit user</button>
             </div>
           </div>
         </div>
