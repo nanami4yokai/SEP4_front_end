@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css'
 import { Modal, Button } from 'react-bootstrap'
-import registration from '../../images/registration.png'
+jest.mock('../../images/registration.png', () => 'mock-image-path');
 import axios from 'axios';
 
 const Login = ({ onTerrariumsUpdate }) => {

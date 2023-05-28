@@ -8,7 +8,7 @@ export default function DataFilter({ filterOption, setFilterOption, setDataRange
   
     return (
       <Dropdown>
-        <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+        <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary" data-testid="dropdown-toggle">
         </Dropdown.Toggle>
         <Dropdown.Menu variant='dark'>
           <Dropdown.Item
