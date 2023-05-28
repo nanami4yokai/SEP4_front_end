@@ -23,6 +23,7 @@ function Sidebar({terrariums: sidebarTerrariums}) {
     setCollapsed(!collapsed);
   };
 
+
   const addTerrarium = () => {
     setShowModal(true);
   };
@@ -73,6 +74,11 @@ function Sidebar({terrariums: sidebarTerrariums}) {
     handleModalClose();
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('jwtToken');
+    navigate('/login');
+  }
+
   return (
     <div className={`sidebar ${collapsed ? "" : "collapsed"}`}>
       <button className="toggle-btn" onClick={toggleCollapse}>
@@ -86,7 +92,7 @@ function Sidebar({terrariums: sidebarTerrariums}) {
           <div className="user-info">
             <p id="welcome-mssg">Welcome, admin</p>
             <div className="user-info-bttns">
-              <button id="log-out">Log out</button>
+              <button id="log-out" onClick={handleLogout}>Log out</button>
               <button id="edit-user">Edit user</button>
             </div>
           </div>
