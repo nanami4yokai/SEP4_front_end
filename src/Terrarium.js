@@ -17,6 +17,7 @@ import HumidityGraph from './components/Graphs/humidityGraph'
 import TempAlert from './components/Alerts/tempAlert';
 import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
+import DeleteTerrarium from './components/DeleteTerrarium/DeleteTerrarium';
 import button from './images/button.png';
 import NewTerLandPage from './components/NewTerrariumLandingPage/NewTerLandPage';
 import './Terrarium.css'
@@ -58,6 +59,7 @@ const Terrarium = () => {
     return (
         <div className="Main">
             <Sidebar />
+            <DeleteTerrarium/>
             <div className='terrarium-name'>
                 <img id="terrarium-logo" src={button} alt="Terrarium logo" />
                 <div className='terrarium-details'>
