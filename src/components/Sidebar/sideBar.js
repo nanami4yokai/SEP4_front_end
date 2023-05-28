@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap'
 import "./Sidebar.css";
 import chameleon from "../../images/chameleon.png";
@@ -10,6 +10,7 @@ import axios from "axios";
 function Sidebar({terrariums: sidebarTerrariums}) {
   const [collapsed, setCollapsed] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [id, setID] = useState('');
   const [terrariums, setTerrariums] = useState([
@@ -49,7 +50,8 @@ function Sidebar({terrariums: sidebarTerrariums}) {
 
     setTerrariums([...terrariums, newTerrarium]);
     handleModalClose();
-  };
+    navigate(`/terrarium/${newTerrarium.id}`); // Navigate to the new terrarium page
+  };  
 
   const handleNameSetup = (event) => {
     setName(event.target.value);

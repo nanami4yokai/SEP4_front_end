@@ -1,0 +1,28 @@
+.terrarium-name{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-left: 350px;
+    margin-top: 30px;
+}
+
+.terrarium-details{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+#terrarium-logo{
+    width: 75px;
+    height: 75px;
+    margin-top: 7px;
+}
+
+#terrarium-title{
+    font-size: 40px;
+    height: 40px;
+}
+
+#device-nr{
+    font-size: 18px;
+}

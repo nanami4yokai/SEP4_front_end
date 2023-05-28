@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes, Navigate } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 import Sidebar from './components/Sidebar/sideBar';
 import TempDisplay from './components/Displays/TempDisplay';
 import CO2Display from './components/Displays/CO2Display';
@@ -13,6 +14,7 @@ import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
 import Login from './components/Login/Login';
 import WelcomePage from './components/WelcomePage/welcomePage';
+import NewTerLandPage from './components/NewTerrariumLandingPage/NewTerLandPage';
 import './App.css'
 
 import Terrarium from './Terrarium'
@@ -33,6 +35,7 @@ function App() {
           <Route path="/terrarium/:terrariumId" element={<Terrarium />} />
         */}
         <Route path='/' element={<Terrarium />} />
+        <Route path="/terrarium/:id" component={NewTerLandPage} /> {/* New terrarium page */}
         <Route path='/welcome' element={getWelcomePageComp()} />
         <Route path="*" element={<NotFound />} />
         

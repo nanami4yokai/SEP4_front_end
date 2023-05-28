@@ -18,6 +18,9 @@ import TempAlert from './components/Alerts/tempAlert';
 import CO2Alert from './components/Alerts/co2Alert';
 import HumidityAlert from './components/Alerts/humidityAlert';
 import DeleteTerrarium from './components/DeleteTerrarium/DeleteTerrarium';
+import button from './images/button.png';
+import NewTerLandPage from './components/NewTerrariumLandingPage/NewTerLandPage';
+import './Terrarium.css'
 import './App.css'
 
 const Terrarium = () => {
@@ -45,9 +48,9 @@ const Terrarium = () => {
 
     const filterOption = 'realtime'; // Set the desired filter option here
 
-    const tempChartData = useTempChartData( filterOption);
-    const co2ChartData = useCO2ChartData( filterOption);
-    const humChartData = useHumChartData( filterOption);
+    const tempChartData = useTempChartData(filterOption);
+    const co2ChartData = useCO2ChartData(filterOption);
+    const humChartData = useHumChartData(filterOption);
 
     // if (!terrariumData) {
     //     return <div>Loading...</div>;
@@ -57,6 +60,13 @@ const Terrarium = () => {
         <div className="Main">
             <Sidebar />
             <DeleteTerrarium/>
+            <div className='terrarium-name'>
+                <img id="terrarium-logo" src={button} alt="Terrarium logo" />
+                <div className='terrarium-details'>
+                    <p id='terrarium-title'><b>Terrarium 1</b></p>
+                    <p id='device-nr'>Device 1111</p>
+                </div>
+            </div>
             <RangeDisplay />
             <TempDisplay temperatureData={temperatureData} error={tempError} />
             <CO2Display co2Data={co2Data} error={co2Error} />
@@ -75,6 +85,22 @@ const Terrarium = () => {
             </div>
         </div >
     );
+}
+
+const getNewTerrariumLandingPage = () => {
+    return (
+        <div>
+            <Sidebar/>
+            <div className='terrarium-name'>
+                <img id="terrarium-logo" src={button} alt="Terrarium logo" />
+                <div className='terrarium-details'>
+                    <p id='terrarium-title'><b>Terrarium 4</b></p>
+                    <p id='device-nr'>Device 2222</p>
+                </div>
+            </div>
+            <NewTerLandPage/>
+        </div>
+    )
 }
 
 export default Terrarium;
