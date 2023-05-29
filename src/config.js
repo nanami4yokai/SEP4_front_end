@@ -4,4 +4,5 @@ export const API_ENDPOINTS = {
   login: `${API_BASE_URL}/public/login`,
   register: `${API_BASE_URL}/public/register`,
   terrariums: `${API_BASE_URL}/terrarium/all`,
+  delete:`${API_BASE_URL}/terrarium/delete`,
 };
