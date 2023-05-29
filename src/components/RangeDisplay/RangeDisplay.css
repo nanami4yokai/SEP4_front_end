@@ -5,7 +5,12 @@
     width: 278px;
     height: 164px;
     left: 396px;
-    top: 150px;
+    top: 225px;
+    transition: all 0.3s ease;
+  }
+
+  .sidebar.collapsed ~ .range-display {
+    margin-left: -300px;
   }
 
   .temp-ranges,
@@ -70,7 +75,7 @@
   .parameter-input {
     margin-bottom: 10px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
   }
   
   .parameter-input label {
@@ -95,16 +100,16 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 526px;
+    width: 494px;
     color: var(--bs-modal-color);
     pointer-events: auto;
     background-color: #EDFFEF;
     background-clip: padding-box;
     border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
-    border-radius: 25px;
+    border-radius: 26px;
     outline: 0;
-    
-  }
+    align-items: stretch;
+}
 
   .modal-header {
     background-color: #EDFFEF;
@@ -143,8 +148,8 @@
     position: absolute;
     width: 96px;
     height: 26px;
-    left: 140px;
-    top: 200px;
+    left: 263px;
+    top: 213px;
     color: black;
     font-weight: bold;
     text-align: center;
@@ -157,8 +162,8 @@
     position: absolute;
     width: 96px;
     height: 26px;
-    left: 300px;
-    top: 200px;
+    left: 375px;
+    top: 213px;
     color: black;
     font-weight: bold;
     text-align: center;

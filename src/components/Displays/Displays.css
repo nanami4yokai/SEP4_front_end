@@ -1,9 +1,22 @@
+.display-container{
+  display: flex;
+  flex-direction: row;
+  position:relative;
+  transition: all 0.3s ease;
+  left: 30px;
+}
+
+.sidebar.collapsed ~ .display-container {
+ left: -100px
+}
+
+
 .tempbox {
     position: relative;
     width: 180px;
     height: 107px;
     left: 699px;
-    top: 154px;
+    top: -3px;
     
     background: #EDFFEF;
     border-radius: 25px;
@@ -33,7 +46,7 @@
     width: 180px;
     height: 107px;
     left: 900px;
-    top: 50px;
+    top: -111px;
 
     
     background: #EDFFEF;
@@ -61,7 +74,7 @@
     width: 180px;
     height: 107px;
     left: 1100px;
-    top: -60px;
+    top: -218px;
 
     
     background: #EDFFEF;
@@ -82,4 +95,8 @@
     height: 0px;
     left: 60px;
     top: 15px;
+}
+
+h1{
+    font-size:  2.3rem;
 }

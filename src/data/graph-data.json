@@ -1,0 +1,44 @@
+{
+
+    "graphdata":[
+        {
+            "id": 1,
+            "temperature": 22.0,
+            "co2": 1000,
+            "humidity": 55,
+            "timestamp": "2023-05-18T16:06:09.175404"
+
+        },
+        {
+            "id": 2,
+            "temperature": 24.0,
+            "co2": 1500,
+            "humidity": 65,
+            "timestamp": "2023-05-05T16:06:09.175404"
+
+        },
+        {
+            "id": 3,
+            "temperature": 23.0,
+            "co2": 450,
+            "humidity": 50,
+            "timestamp": "2023-05-15T16:06:09.175404"
+        },
+        {
+            "id": 4,
+            "temperature": 25.0,
+            "co2": 600,
+            "humidity": 75,
+            "timestamp": "2023-05-10T16:06:09.175404"
+        },
+        {
+            "id": 5,
+            "temperature": 18.0,
+            "co2": 2000,
+            "humidity": 70,
+            "timestamp": "2023-05-23T16:06:09.175404"
+        }
+        
+    ]
+    
+}
