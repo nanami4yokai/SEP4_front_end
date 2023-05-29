@@ -1,0 +1,74 @@
+{
+  "terrariumdata": [
+    {
+      "id": 1,
+      "minTemperature": 20.0,
+      "maxTemperature": 25.0,
+      "minCO2": 300.0,
+      "maxCO2": 650.0,
+      "minHumidity": 45.0,
+      "maxHumidity": 65.0,
+      "user": {
+        "email": "aaa@aaa.com",
+        "username": "AAA",
+        "password": "aaa111"
+      }
+    },
+    {
+      "id": 2,
+      "minTemperature": 18.0,
+      "maxTemperature": 26.0,
+      "minCO2": 350.0,
+      "maxCO2": 600.0,
+      "minHumidity": 55.0,
+      "maxHumidity": 70.0,
+      "user": {
+        "email": "bbb@bbb.com",
+        "username": "BBB",
+        "password": "bbb222"
+      }
+    },
+    {
+      "id": 3,
+      "minTemperature": 21.0,
+      "maxTemperature": 25.0,
+      "minCO2": 400.0,
+      "maxCO2": 750.0,
+      "minHumidity": 45.0,
+      "maxHumidity": 64.0,
+      "user": {
+        "email": "ccc@ccc.com",
+        "username": "CCC",
+        "password": "ccc333"
+      }
+    },
+    {
+      "id": 4,
+      "minTemperature": 22.0,
+      "maxTemperature": 28.0,
+      "minCO2": 350.0,
+      "maxCO2": 750.0,
+      "minHumidity": 45.0,
+      "maxHumidity": 64.0,
+      "user": {
+        "email": "ddd@ddd.com",
+        "username": "DDD",
+        "password": "ddd444"
+      }
+    },
+    {
+      "id": 5,
+      "minTemperature": 15.0,
+      "maxTemperature": 26.0,
+      "minCO2": 250.0,
+      "maxCO2": 500.0,
+      "minHumidity": 45.0,
+      "maxHumidity": 64.0,
+      "user": {
+        "email": "eee@eee.com",
+        "username": "EEE",
+        "password": "eee555"
+      }
+    }
+  ]
+}
