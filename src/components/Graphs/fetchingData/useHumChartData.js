@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_ENDPOINTS } from '../../../config';
 
 export const useHumChartData = (filterOption) => {
     const [chartData, setChartData] = useState([]);
     const [dataRange, setDataRange] = useState(24); 
+    const [error, setError] = useState(null);
+
 
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let url = 'https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00';
+                let url = API_ENDPOINTS.reading;
 
                 if (filterOption === 'daily') {
                     // Logic to filter by day
@@ -42,7 +45,7 @@ export const useHumChartData = (filterOption) => {
                 }));
                 setChartData(humidityData);
             } catch (error) {
-                console.log(error);
+                setError(error.message);
             }
         };
 
