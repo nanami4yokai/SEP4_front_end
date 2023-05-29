@@ -3,6 +3,7 @@ import './Displays.css';
 import axios from 'axios';
 import { useCO2Data } from './fetchingData/useCO2Data';
 import myData from '../../data/recordings-data.json' 
+import co2Data from '../../data/graph-data.json'
 
 // function CO2Display() {
 //   const { co2Data, co2Error } = useCO2Data();
@@ -37,7 +38,7 @@ import myData from '../../data/recordings-data.json'
 function CO2Display(){
   
   const showData = ({ id }) => {
-    const data = myData.readings;
+    const data = co2Data.graphdata
   
     const element = data.find((element) => element.id === id);
   
