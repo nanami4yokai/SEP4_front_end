@@ -1,4 +1,4 @@
-.display-container{
+/* .display-container{
   display: flex;
   flex-direction: row;
   position:relative;
@@ -8,7 +8,7 @@
 
 .sidebar.collapsed ~ .display-container {
  left: -100px
-}
+} */
 
 
 .tempbox {
