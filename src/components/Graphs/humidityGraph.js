@@ -7,6 +7,7 @@ import "./Graphs.css"
 import DataFilter from '../Filter/filter';
 import { useHumChartData } from './fetchingData/useHumChartData';
 import myData from '../../data/graph-data.json'
+import limitsData from '../../data/terrarium-data.json'
 
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
@@ -67,16 +68,20 @@ const HumidityGraph = () => {
   const filteredData = filterDataByOption(chartData);
   const labels = filteredData ? filteredData.map((element) => element.timestamp).reverse() : [];
   const humidityData = filteredData ? filteredData.map((element) => element.humidity).reverse() : [];
-  
 
   const filteredHumidityData = humidityData.slice(-dataRange);
+
+  const terrariumId = 1;
+  const terrarium = limitsData.terrariumdata.find((item) => item.id === terrariumId);
+  const minHumidity = terrarium ? terrarium.minHumidity : 0;
+  const maxHumidity = terrarium ? terrarium.maxHumidity : 0;
 
   const data = {
     labels: labels.slice(-dataRange),
     datasets: [
       {
         label: 'max alert',
-        data: Array(dataRange).fill(85),
+        data: Array(dataRange).fill(maxHumidity),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
@@ -91,7 +96,7 @@ const HumidityGraph = () => {
       },
       {
         label: 'min alert',
-        data: Array(dataRange).fill(45),
+        data: Array(dataRange).fill(minHumidity),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',

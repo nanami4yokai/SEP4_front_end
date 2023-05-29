@@ -6,6 +6,7 @@ import "./Graphs.css";
 import DataFilter from '../Filter/filter';
 import { useTempChartData } from './fetchingData/useTempChartData';
 import myData from '../../data/graph-data.json'
+import limitsData from '../../data/terrarium-data.json'
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
@@ -49,15 +50,20 @@ const TempGraph = () => {
   const labels = filteredData ? filteredData.map((element) => element.timestamp).reverse() : [];
   const temperatureData = filteredData ? filteredData.map((element) => element.temperature).reverse() : [];
   
-
   const filteredTemperatureData = temperatureData.slice(-dataRange);
+
+  // Extract minTemperature and maxTemperature from the limitsData file for the terrarium with id 1
+  const terrariumId = 1;
+  const terrarium = limitsData.terrariumdata.find((item) => item.id === terrariumId);
+  const minTemperature = terrarium ? terrarium.minTemperature : 0;
+  const maxTemperature = terrarium ? terrarium.maxTemperature : 0;
 
   const data = {
     labels: labels.slice(-dataRange),
     datasets: [
       {
         label: 'max alert',
-        data: Array(dataRange).fill(28),
+        data: Array(dataRange).fill(maxTemperature),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
@@ -72,7 +78,7 @@ const TempGraph = () => {
       },
       {
         label: 'min alert',
-        data: Array(dataRange).fill(18),
+        data: Array(dataRange).fill(minTemperature),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',

@@ -2,12 +2,12 @@
   "terrariumdata": [
     {
       "id": 1,
-      "minTemperature": 20.0,
-      "maxTemperature": 25.0,
-      "minCO2": 300.0,
-      "maxCO2": 650.0,
+      "minTemperature": 18.0,
+      "maxTemperature": 28.0,
+      "minCO2": 250.0,
+      "maxCO2": 480.0,
       "minHumidity": 45.0,
-      "maxHumidity": 65.0,
+      "maxHumidity": 85.0,
       "user": {
         "email": "aaa@aaa.com",
         "username": "AAA",
