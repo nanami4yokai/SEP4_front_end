@@ -6,4 +6,5 @@ export const API_ENDPOINTS = {
   terrariums: `${API_BASE_URL}/terrarium/all`,
   delete:`${API_BASE_URL}/terrarium/delete`,
   create: `${API_BASE_URL}/terrarium/create`,
+  limits:`${API_BASE_URL}/terrarium/limits`,
 };

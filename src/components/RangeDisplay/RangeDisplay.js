@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import './RangeDisplay.css';
 import param from "../../images/param.png";
 import axios from 'axios';
+import { API_ENDPOINTS } from '../../config';
 
 function RangeDisplay() {
   const [temperatureRange, setTemperatureRange] = useState({ min: 0, max: 0 });
@@ -12,31 +13,10 @@ function RangeDisplay() {
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
-  // const handleSave = async () => {
-  //   try {
-  //     const temperatureUrl = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/temperature/?min=${temperatureRange.min}&max=${temperatureRange.max}`;
-  //     const humidityUrl = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/humidity/?min=${humidityRange.min}&max=${humidityRange.max}`;
-  //     const co2Url = `https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/co2/?min=${co2Range.min}&max=${co2Range.max}`;
-
-  //      Promise.all([
-  //       axios.post(temperatureUrl),
-  //       axios.post(humidityUrl),
-  //       axios.post(co2Url)
-  //     ]);
+ 
   const handleSave = async () => {
     try {
-      const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Proxy server URL
-
-      const apiUrl = 'https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/limits/';
-
-      // const requestBody = {
-      // minTemperature: temperatureRange.min,
-      // maxTemperature: temperatureRange.max,
-      // minCO2: co2Range.min,
-      // maxCO2: co2Range.max,
-      // minHumidity: humidityRange.min,
-      // maxHumidity: humidityRange.max
-      // };
+      const apiUrl = API_ENDPOINTS.limits;
 
       const requestData = {
         minTemperature: temperatureRange.min,
@@ -47,13 +27,11 @@ function RangeDisplay() {
         maxHumidity: humidityRange.max
       };
 
-      const response = await axios.post(proxyUrl + apiUrl, requestData, {
-        method: 'POST',
+      const response = await axios.post( apiUrl, requestData, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
-      // await axios.post(apiUrl, requestBody);
       console.log('Data saved successfully');
     } catch (error) {
       console.error(error);
