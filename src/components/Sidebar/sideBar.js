@@ -94,13 +94,15 @@ function Sidebar({terrariums: sidebarTerrariums}) {
       </div>
       <hr id="hr" />
 
-      <ul className="sidebar-nav">
-        {terrariums.map((terrarium) => (
-          <li key={terrarium.id}>
-            <Link to={`/terrarium/${terrarium.id}`}>{terrarium.name}</Link>
-          </li>
-        ))}
-      </ul>
+      {sidebarTerrariums && sidebarTerrariums.length > 0 && (
+        <ul className="sidebar-nav">
+          {sidebarTerrariums.map((terrarium) => (
+            <li key={terrarium.id}>
+              <Link to={`/terrarium/${terrarium.id}`}>{terrarium.name}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
 
       <div className="add-terrarium">
         <button id="add-terrarium" onClick={addTerrarium}>
