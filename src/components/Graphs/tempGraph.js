@@ -65,20 +65,20 @@ const TempGraph = () => {
 
   const filterDataByOption = (data) => {
     if (filterOption === 'realtime') {
-      return data.map((element) => element.temperature);
+      return data.map((element) => element.temperature).reverse();
     } else if (filterOption === 'daily') {
       // Filter last day's data
-      return data.slice(-dataRange).map((element) => element.temperature);
+      return data.slice(-dataRange).map((element) => element.temperature).reverse();
     } else if (filterOption === 'weekly') {
       // Filter last week's data
-      return data.slice(-dataRange).map((element) => element.temperature);
+      return data.slice(-dataRange).map((element) => element.temperature).reverse();
     } else if (filterOption === 'monthly') {
       // Filter last month's data
-      return data.slice(-dataRange).map((element) => element.temperature);
+      return data.slice(-dataRange).map((element) => element.temperature).reverse();
     }
   };
   
-  const labels = chartData ? chartData.map((element) => element.timestamp) : [];
+  const labels = chartData ? chartData.map((element) => element.timestamp).reverse() : [];
   const temperatureData = chartData ? filterDataByOption(chartData) : [];
 
   const data = {

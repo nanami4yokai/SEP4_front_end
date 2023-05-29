@@ -65,20 +65,20 @@ const HumidityGraph = () => {
   const chartData = myData.graphdata;
   const filterDataByOption = (data) => {
     if (filterOption === 'realtime') {
-      return data.map((element) => element.humidity);
+      return data.map((element) => element.humidity).reverse();
     } else if (filterOption === 'daily') {
       // Filter last day's data
-      return data.slice(-dataRange).map((element) => element.humidity);
+      return data.slice(-dataRange).map((element) => element.humidity).reverse();
     } else if (filterOption === 'weekly') {
       // Filter last week's data
-      return data.slice(-dataRange).map((element) => element.humidity);
+      return data.slice(-dataRange).map((element) => element.humidity).reverse();
     } else if (filterOption === 'monthly') {
       // Filter last month's data
-      return data.slice(-dataRange).map((element) => element.humidity);
+      return data.slice(-dataRange).map((element) => element.humidity).reverse();
     }
   };
 
-  const labels = chartData ? chartData.map((element) => element.timestamp) : [];
+  const labels = chartData ? chartData.map((element) => element.timestamp).reverse() : [];
   const humidityData = chartData ? filterDataByOption(chartData) : [];
 
   const data = {
@@ -86,7 +86,7 @@ const HumidityGraph = () => {
     datasets: [
       {
         label: 'max alert',
-        data: Array(dataRange).fill(28),
+        data: Array(dataRange).fill(85),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
@@ -101,7 +101,7 @@ const HumidityGraph = () => {
       },
       {
         label: 'min alert',
-        data: Array(dataRange).fill(18),
+        data: Array(dataRange).fill(45),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
@@ -117,13 +117,13 @@ const HumidityGraph = () => {
     scales: {
       y: {
         beginAtZero: false,
-        min: 50,
+        min: 25,
         max: 100,
         grid: {
           color: 'rgba(0, 0, 0, 0.1)',
         },
         ticks: {
-          stepSize: 2,
+          stepSize: 5,
         },
         position: 'left',
       }

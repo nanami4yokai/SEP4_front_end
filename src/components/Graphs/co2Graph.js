@@ -64,20 +64,20 @@ const CO2Graph = () => {
   const chartData = myData.graphdata;
   const filterDataByOption = (data) => {
     if (filterOption === 'realtime') {
-      return data.map((element) => element.co2);
+      return data.map((element) => element.co2).reverse();
     } else if (filterOption === 'daily') {
       // Filter last day's data
-      return data.slice(-dataRange).map((element) => element.co2);
+      return data.slice(-dataRange).map((element) => element.co2).reverse();
     } else if (filterOption === 'weekly') {
       // Filter last week's data
-      return data.slice(-dataRange).map((element) => element.co2);
+      return data.slice(-dataRange).map((element) => element.co2).reverse();
     } else if (filterOption === 'monthly') {
       // Filter last month's data
-      return data.slice(-dataRange).map((element) => element.co2);
+      return data.slice(-dataRange).map((element) => element.co2).reverse();
     }
   };
 
-  const labels = chartData ? chartData.map((element) => element.timestamp) : [];
+  const labels = chartData ? chartData.map((element) => element.timestamp).reverse() : [];
   const co2Data = chartData ? filterDataByOption(chartData) : [];
 
   const data = {
@@ -85,7 +85,7 @@ const CO2Graph = () => {
     datasets: [
       {
         label: 'max alert',
-        data: Array(dataRange).fill(28),
+        data: Array(dataRange).fill(500),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
@@ -100,7 +100,7 @@ const CO2Graph = () => {
       },
       {
         label: 'min alert',
-        data: Array(dataRange).fill(18),
+        data: Array(dataRange).fill(250),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
@@ -114,13 +114,13 @@ const CO2Graph = () => {
     scales: {
       y: {
         beginAtZero: true,
-        min: 400,
-        max: 2100,
+        min: 200,
+        max: 600,
         grid: {
           color: 'rgba(0, 0, 0, 0.1)',
         },
         ticks: {
-          stepSize: 2,
+          stepSize: 25,
         },
         position: 'left',
       }
