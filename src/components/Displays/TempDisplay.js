@@ -3,6 +3,7 @@ import './Displays.css';
 import axios from 'axios';
 import { useTempData } from './fetchingData/useTempData';
 import myData from '../../data/recordings-data.json' 
+import temData from '../../data/graph-data.json'
 
 // function TempDisplay() {
 //   const { temperatureData, tempError} = useTempData();
@@ -38,7 +39,7 @@ import myData from '../../data/recordings-data.json'
 function TempDisplay() {
 
     const showData = ({ id }) => {
-        const data = myData.readings;
+        const data = temData.graphdata;
       
         const element = data.find((element) => element.id === id);
 
