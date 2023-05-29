@@ -1,34 +1,39 @@
 {
-    "readings": [
-        {
-            "id": 1,
-            "temperature": 22.0,
-            "co2": 1000,
-            "humidity": 55
-        },
-        {
-            "id": 2,
-            "temperature": 24.0,
-            "co2": 1000,
-            "humidity": 55
-        },
-        {
-            "id": 3,
-            "temperature": 24.0,
-            "co2": 1000,
-            "humidity": 55
-        },
-        {
-            "id": 4,
-            "temperature": 24.0,
-            "co2": 1000,
-            "humidity": 55
-        },
-        {
-            "id": 5,
-            "temperature": 22.0,
-            "co2": 1000,
-            "humidity": 60
-        }
-    ]
+  "readings": [
+    {
+      "id": 1,
+      "temperature": 22.0,
+      "co2": 320,
+      "humidity": 55
+    },
+    {
+      "id": 2,
+      "temperature": 24.0,
+      "co2": 350,
+      "humidity": 65
+    },
+    {
+      "id": 3,
+      "temperature": 23.0,
+      "co2": 350,
+      "humidity": 50
+    },
+    {
+      "id": 4,
+      "temperature": 21.0,
+      "co2": 380,
+      "humidity": 75
+    },
+    {
+      "id": 5,
+      "temperature": 18.0,
+      "co2": 360,
+      "humidity": 70
+    },
+    { "id": 6, "temperature": 20.0, "co2": 380, "humidity": 72 },
+    { "id": 7, "temperature": 20.0, "co2": 385, "humidity": 72 },
+    { "id": 8, "temperature": 23.0, "co2": 390, "humidity": 74 },
+    { "id": 9, "temperature": 21.0, "co2": 370, "humidity": 70 },
+    { "id": 10, "temperature": 20.0, "co2": 365, "humidity": 70 }
+  ]
 }

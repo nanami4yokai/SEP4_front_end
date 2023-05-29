@@ -59,18 +59,20 @@ const Terrarium = () => {
     return (
         <div className="Main">
             <Sidebar />
-            <DeleteTerrarium/>
-            <div className='terrarium-name'>
+            <div className='terrarium-header'>
                 <img id="terrarium-logo" src={button} alt="Terrarium logo" />
                 <div className='terrarium-details'>
                     <p id='terrarium-title'><b>Terrarium 1</b></p>
                     <p id='device-nr'>Device 1111</p>
                 </div>
+                <DeleteTerrarium id="del-ter-btn" />
             </div>
             <RangeDisplay />
-            <TempDisplay temperatureData={temperatureData} error={tempError} />
-            <CO2Display co2Data={co2Data} error={co2Error} />
-            <HumidDisplay humidityData={humidityData} error={humError} />
+            <div className='displays'>
+                <TempDisplay temperatureData={temperatureData} error={tempError} />
+                <CO2Display co2Data={co2Data} error={co2Error} />
+                <HumidDisplay humidityData={humidityData} error={humError} />
+            </div>
             <TempGraph tempChartData={tempChartData} filterOption={filterOption} />
             <br />
             <CO2Graph co2ChartData={co2ChartData} filterOption={filterOption} />
@@ -90,7 +92,7 @@ const Terrarium = () => {
 const getNewTerrariumLandingPage = () => {
     return (
         <div>
-            <Sidebar/>
+            <Sidebar />
             <div className='terrarium-name'>
                 <img id="terrarium-logo" src={button} alt="Terrarium logo" />
                 <div className='terrarium-details'>
@@ -98,7 +100,7 @@ const getNewTerrariumLandingPage = () => {
                     <p id='device-nr'>Device 2222</p>
                 </div>
             </div>
-            <NewTerLandPage/>
+            <NewTerLandPage />
         </div>
     )
 }

@@ -3,6 +3,7 @@ import './Displays.css';
 import axios from 'axios';
 import { useHumData } from './fetchingData/useHumData';
 import myData from '../../data/recordings-data.json' 
+import humData from '../../data/graph-data.json'
 
 // function HumidDisplay() {
 //     const { humidityData, humError} = useHumData();
@@ -35,7 +36,7 @@ import myData from '../../data/recordings-data.json'
 function HumidDisplay(){
   
   const showData = ({ id }) => {
-    const data = myData.readings;
+    const data = humData.graphdata;
   
     const element = data.find((element) => element.id === id);
   
