@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Alert from 'react-bootstrap/Alert';
 import './AlertStyling.css'
 import axios from 'axios';
+import { API_ENDPOINTS } from '../../config';
 
 export default function CO2Alert() {
     const [showAlert, setShowAlert] = useState(false);
@@ -9,7 +10,7 @@ export default function CO2Alert() {
   useEffect(() => {
     const fetchAlertStatus = async () => {
       try {
-        const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/alert');
+        const response = await axios.get(API_ENDPOINTS.alert);
         const alertStatus = response.data.alert; // Assuming the API response has an 'alert' field for the alert status
         setShowAlert(alertStatus);
         // if (alertStatus) {
@@ -22,7 +23,6 @@ export default function CO2Alert() {
       }
     };
 
-    // Fetch initial alert status
     fetchAlertStatus();
 
     // Set up interval to periodically check for alert status

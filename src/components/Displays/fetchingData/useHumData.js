@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_ENDPOINTS } from '../../../config';
 
 export const useHumData = () => {
     const [humidityData, setHumData] = useState(null);
@@ -8,8 +9,8 @@ export const useHumData = () => {
     useEffect(() => {
         const fetchHumData = async () => {
             try {
-                const response = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/reading/?start=2020-01-01%2000:00:00&end=2024-01-01%2000:00:00');
-                if (response.data.length > 0) {
+                const response = await axios.get(API_ENDPOINTS.reading);
+                if (response.data && response.data.length > 0) {
                     const latestReading = response.data[0];
                     setHumData(latestReading.humidity);
                 }

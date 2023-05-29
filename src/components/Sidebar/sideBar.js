@@ -6,6 +6,7 @@ import chameleon from "../../images/chameleon.png";
 import user from "../../images/user.png";
 import plus from '../../images/plus.png'
 import axios from "axios";
+import { API_ENDPOINTS } from "../../config";
 
 function Sidebar({terrariums: sidebarTerrariums}) {
   const [collapsed, setCollapsed] = useState(true);
@@ -13,11 +14,10 @@ function Sidebar({terrariums: sidebarTerrariums}) {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [id, setID] = useState('');
-  const [terrariums, setTerrariums] = useState([
-    { id: 1, name: "Terrarium 1" },
-    { id: 2, name: "Terrarium 2" },
-    { id: 3, name: "Terrarium 3" },
-  ]);
+  const [terrariums, setTerrariums] = useState([ { 
+    id: 1, name: "Terrarium 1" },
+  { id: 2, name: "Terrarium 2" },
+  { id: 3, name: "Terrarium 3" }, ]);
 
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
@@ -39,7 +39,7 @@ function Sidebar({terrariums: sidebarTerrariums}) {
         'Authorization': `Bearer ${token}`
       }
     }; 
-    axios.post('https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/create', newTerrarium, config)
+    axios.post(API_ENDPOINTS.create, newTerrarium, config)
     .then(response => {
       console.log('Terrarium created:', response.data);
       setTerrariums([...terrariums, newTerrarium]);
@@ -48,8 +48,6 @@ function Sidebar({terrariums: sidebarTerrariums}) {
       .catch(error => {
         console.error('Error creating terrarium:', error);
       });
-
-    setTerrariums([...terrariums, newTerrarium]);
     handleModalClose();
     navigate(`/terrarium/${newTerrarium.id}`); // Navigate to the new terrarium page
   };  
@@ -99,13 +97,15 @@ function Sidebar({terrariums: sidebarTerrariums}) {
       </div>
       <hr id="hr" />
 
-      <ul className="sidebar-nav">
-        {terrariums.map((terrarium) => (
-          <li key={terrarium.id}>
-            <Link to={`/terrarium/${terrarium.id}`}>{terrarium.name}</Link>
-          </li>
-        ))}
-      </ul>
+      {sidebarTerrariums && sidebarTerrariums.length > 0 && (
+        <ul className="sidebar-nav">
+          {sidebarTerrariums.map((terrarium) => (
+            <li key={terrarium.id}>
+              <Link to={`/terrarium/${terrarium.id}`}>{terrarium.name}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
 
       <div className="add-terrarium">
         <button id="add-terrarium" onClick={addTerrarium}>
