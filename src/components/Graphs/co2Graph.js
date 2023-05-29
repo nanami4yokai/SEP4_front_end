@@ -6,6 +6,7 @@ import axios from 'axios';
 import "./Graphs.css"
 import DataFilter from '../Filter/filter';
 import { useCO2ChartData } from './fetchingData/useCO2ChartData';
+import myData from '../../data/graph-data.json'
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
@@ -13,9 +14,54 @@ const CO2Graph = () => {
   const [filterOption, setFilterOption] = useState('realtime');
   const [dataRange, setDataRange] = useState(24); 
 
-  const chartData = useCO2ChartData(filterOption);
+  // const chartData = useCO2ChartData(filterOption);
   
 
+  // const filterDataByOption = (data) => {
+  //   if (filterOption === 'realtime') {
+  //     return data.map((element) => element.co2);
+  //   } else if (filterOption === 'daily') {
+  //     // Filter last day's data
+  //     return data.slice(-dataRange).map((element) => element.co2);
+  //   } else if (filterOption === 'weekly') {
+  //     // Filter last week's data
+  //     return data.slice(-dataRange).map((element) => element.co2);
+  //   } else if (filterOption === 'monthly') {
+  //     // Filter last month's data
+  //     return data.slice(-dataRange).map((element) => element.co2);
+  //   }
+  // };
+
+  // const data = {
+  //   labels: chartData ? chartData.slice(-dataRange).map((element) => element.timestamp) : [],
+  //   datasets: [
+  //     {
+  //       label: 'max alert',
+  //       data: Array(dataRange).fill(250),
+  //       fill: false,
+  //       backgroundColor: 'red',
+  //       borderColor: 'red',
+  //       borderWidth: 1
+  //     },
+  //     {
+  //       label: 'co2',
+  //       data: chartData ? filterDataByOption(chartData) : [],
+  //       backgroundColor: 'rgba(000, 000, 000, 1)',
+  //       borderColor: 'rgba(000, 000, 000, 1)',
+  //       borderWidth: 1
+  //     },
+  //     {
+  //       label: 'min alert',
+  //       data: Array(dataRange).fill(180),
+  //       fill: false,
+  //       backgroundColor: 'blue',
+  //       borderColor: 'blue',
+  //       borderWidth: 1
+  //     }
+  //   ]
+  // };
+
+  const chartData = myData.graphdata;
   const filterDataByOption = (data) => {
     if (filterOption === 'realtime') {
       return data.map((element) => element.co2);
@@ -31,33 +77,36 @@ const CO2Graph = () => {
     }
   };
 
+  const labels = chartData ? chartData.map((element) => element.timestamp) : [];
+  const co2Data = chartData ? filterDataByOption(chartData) : [];
+
   const data = {
-    labels: chartData ? chartData.slice(-dataRange).map((element) => element.timestamp) : [],
+    labels: labels.slice(-dataRange),
     datasets: [
       {
         label: 'max alert',
-        data: Array(dataRange).fill(250),
+        data: Array(dataRange).fill(28),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
-        borderWidth: 1
+        borderWidth: 1,
       },
       {
         label: 'co2',
-        data: chartData ? filterDataByOption(chartData) : [],
-        backgroundColor: 'rgba(000, 000, 000, 1)',
-        borderColor: 'rgba(000, 000, 000, 1)',
-        borderWidth: 1
+        data: co2Data.slice(-dataRange),
+        backgroundColor: 'rgba(0, 0, 0, 1)',
+        borderColor: 'rgba(0, 0, 0, 1)',
+        borderWidth: 1,
       },
       {
         label: 'min alert',
-        data: Array(dataRange).fill(180),
+        data: Array(dataRange).fill(18),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
-        borderWidth: 1
-      }
-    ]
+        borderWidth: 1,
+      },
+    ],
   };
 
   const options = {
@@ -65,8 +114,8 @@ const CO2Graph = () => {
     scales: {
       y: {
         beginAtZero: true,
-        min: 150,
-        max: 300,
+        min: 400,
+        max: 2100,
         grid: {
           color: 'rgba(0, 0, 0, 0.1)',
         },
