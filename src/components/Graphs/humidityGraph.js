@@ -12,8 +12,25 @@ import myData from '../../data/graph-data.json'
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
 const HumidityGraph = () => {
-  const [filterOption, setFilterOption] = useState('realtime');
-  const [dataRange, setDataRange] = useState(24); 
+  const [filterOption, setFilterOption] = useState('');
+
+  const getInitialDataRange = (filterOption) => {
+    if (filterOption === 'realtime') {
+      return 10;
+    } else if (filterOption === 'daily') {
+      return 24;
+    } else if (filterOption === 'weekly') {
+      return 168;
+    }
+
+    return 10; // Default to 10 if filterOption is not recognized
+  };
+
+  const [dataRange, setDataRange] = useState(getInitialDataRange(filterOption));
+
+    useEffect(() => {
+    setDataRange(getInitialDataRange(filterOption));
+  }, [filterOption]);
 
   // const chartData = useHumChartData(filterOption);
 
@@ -32,61 +49,34 @@ const HumidityGraph = () => {
   //   }
   // };
 
-  // const data = {
-  //   labels: chartData ? chartData.slice(-dataRange).map((element) => element.timestamp) : [],
-  //   datasets: [
-  //     {
-  //       label: 'max alert',
-  //       data: Array(dataRange).fill(65),
-  //       fill: false,
-  //       backgroundColor: 'red',
-  //       borderColor: 'red',
-  //       borderWidth: 1
-  //     },
-  //     {
-  //       label: 'humidity',
-  //       data: chartData ? filterDataByOption(chartData) : [],
-  //       backgroundColor: 'rgba(000, 000, 000, 1)',
-  //       borderColor: 'rgba(000, 000, 000, 1)',
-  //       borderWidth: 1
-  //     },
-  //     {
-  //       label: 'min alert',
-  //       data: Array(dataRange).fill(45),
-  //       fill: false,
-  //       backgroundColor: 'blue',
-  //       borderColor: 'blue',
-  //       borderWidth: 1
-  //     }
-  //   ]
-  // };
-
   //mock data code below 
   const chartData = myData.graphdata;
+
   const filterDataByOption = (data) => {
     if (filterOption === 'realtime') {
-      return data.map((element) => element.humidity);
+      return data.slice(0, dataRange);
     } else if (filterOption === 'daily') {
-      // Filter last day's data
-      return data.slice(-dataRange).map((element) => element.humidity);
+      return data.slice(0, -24);
     } else if (filterOption === 'weekly') {
-      // Filter last week's data
-      return data.slice(-dataRange).map((element) => element.humidity);
-    } else if (filterOption === 'monthly') {
-      // Filter last month's data
-      return data.slice(-dataRange).map((element) => element.humidity);
+      return data.slice(-168);
     }
+  
+    return data.slice(0, dataRange); // Default to the current data range if filterOption is not recognized
   };
+  
+  const filteredData = filterDataByOption(chartData);
+  const labels = filteredData ? filteredData.map((element) => element.timestamp).reverse() : [];
+  const humidityData = filteredData ? filteredData.map((element) => element.humidity).reverse() : [];
+  
 
-  const labels = chartData ? chartData.map((element) => element.timestamp) : [];
-  const humidityData = chartData ? filterDataByOption(chartData) : [];
+  const filteredHumidityData = humidityData.slice(-dataRange);
 
   const data = {
     labels: labels.slice(-dataRange),
     datasets: [
       {
         label: 'max alert',
-        data: Array(dataRange).fill(28),
+        data: Array(dataRange).fill(85),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
@@ -94,14 +84,14 @@ const HumidityGraph = () => {
       },
       {
         label: 'humidity',
-        data: humidityData.slice(-dataRange),
+        data: filteredHumidityData,
         backgroundColor: 'rgba(0, 0, 0, 1)',
         borderColor: 'rgba(0, 0, 0, 1)',
         borderWidth: 1,
       },
       {
         label: 'min alert',
-        data: Array(dataRange).fill(18),
+        data: Array(dataRange).fill(45),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
@@ -117,13 +107,13 @@ const HumidityGraph = () => {
     scales: {
       y: {
         beginAtZero: false,
-        min: 50,
+        min: 25,
         max: 100,
         grid: {
           color: 'rgba(0, 0, 0, 0.1)',
         },
         ticks: {
-          stepSize: 2,
+          stepSize: 5,
         },
         position: 'left',
       }

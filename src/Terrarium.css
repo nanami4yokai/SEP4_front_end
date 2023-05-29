@@ -1,33 +1,42 @@
-.terrarium-name{
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin-left: 350px;
-    margin-top: 30px;
-    transition: all 0.3s ease;
-
+.terrarium-header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-left: 350px;
+  margin-top: 30px;
+  transition: all 0.3s ease;
 }
 
-.sidebar.collapsed ~ .terrarium-name {
-    margin-left: 83px;;
-  }
-.terrarium-details{
-    display: flex;
-    flex-direction: column;
-    margin-left: 5px;
+.sidebar.collapsed ~ .terrarium-header {
+  margin-left: 83px;
 }
 
-#terrarium-logo{
-    width: 75px;
-    height: 75px;
-    margin-top: 7px;
+.terrarium-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
 }
 
-#terrarium-title{
-    font-size: 40px;
-    height: 40px;
+#terrarium-logo {
+  width: 75px;
+  height: 75px;
+  margin-top: 7px;
 }
 
-#device-nr{
-    font-size: 18px;
+#terrarium-title {
+  font-size: 40px;
+  height: 40px;
+}
+
+#device-nr {
+  font-size: 18px;
+}
+
+.displays {
+  transition: all 0.3s ease;
+}
+
+.sidebar.collapsed ~ .displays {
+  margin-left: -250px;
+  transition: all 0.3s ease;
 }
