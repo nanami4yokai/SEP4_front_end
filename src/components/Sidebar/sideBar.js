@@ -14,7 +14,10 @@ function Sidebar({terrariums: sidebarTerrariums}) {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [id, setID] = useState('');
-  const [terrariums, setTerrariums] = useState([ sidebarTerrariums ]);
+  const [terrariums, setTerrariums] = useState([ { 
+    id: 1, name: "Terrarium 1" },
+  { id: 2, name: "Terrarium 2" },
+  { id: 3, name: "Terrarium 3" }, ]);
 
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
