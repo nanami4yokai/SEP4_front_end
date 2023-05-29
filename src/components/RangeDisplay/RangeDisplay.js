@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import './RangeDisplay.css';
 import param from "../../images/param.png";
 import rangesData from '../../data/terrarium-data.json';
+import { API_ENDPOINTS } from '../../config';
 
 function RangeDisplay() {
   const terrariumData = rangesData.terrariumdata.find(terrarium => terrarium.id === 1);
@@ -23,8 +24,30 @@ function RangeDisplay() {
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
+ 
   const handleSave = async () => {
-    // Implement your save logic here
+    // try {
+    //   const apiUrl = API_ENDPOINTS.limits;
+
+    //   const requestData = {
+    //     minTemperature: temperatureRange.min,
+    //     maxTemperature: temperatureRange.max,
+    //     minCO2: co2Range.min,
+    //     maxCO2: co2Range.max,
+    //     minHumidity: humidityRange.min,
+    //     maxHumidity: humidityRange.max
+    //   };
+
+    //   const response = await axios.post( apiUrl, requestData, {
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }
+    //   });
+    //   console.log('Data saved successfully');
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    // setShowModal(false);
   };
 
   const handleEditParameters = () => {
