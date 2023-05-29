@@ -47,6 +47,7 @@ function CO2Display(){
     }
   
     return (
+      <div className='display-container'>
       <div className="cobox" key={element.id}>
         <div className="co">
           {element && <h1>{element.co2} ppm</h1>}
@@ -54,6 +55,7 @@ function CO2Display(){
         <div className="co-description">
           <p>CO2</p>
         </div>
+      </div>
       </div>
     );
   };

@@ -45,6 +45,7 @@ function HumidDisplay(){
     }
   
     return (
+      <div className='display-container'>
       <div className="humidbox" key={element.id}>
         <div className="humid">
           {element && <h1>{element.humidity} %</h1>}
@@ -52,6 +53,7 @@ function HumidDisplay(){
         <div className="humid-description">
           <p>Humidity</p>
         </div>
+      </div>
       </div>
     );
   };

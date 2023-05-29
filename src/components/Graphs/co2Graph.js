@@ -133,7 +133,7 @@ const CO2Graph = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='graph-container'>
       <div className='top-row'>
         <div className='container-name'>
           <div id='co2-circle'></div>

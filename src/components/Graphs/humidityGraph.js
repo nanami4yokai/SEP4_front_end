@@ -136,7 +136,7 @@ const HumidityGraph = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='graph-container'>
       <div className='top-row'>
         <div className='container-name'>
           <div id='hum-circle'></div>

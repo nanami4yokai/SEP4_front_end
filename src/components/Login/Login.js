@@ -148,8 +148,7 @@ const Login = ({ onTerrariumsUpdate}) => {
                 </div>
             </div >
 
-            {/* Reg Modal */}
-            <Modal show={showModal} onHide={handleModalClose}>
+            <Modal show={showModal} onHide={handleModalClose}className='reg-modal'>
                 <Modal.Header closeButton>
                     <img id="reg-logo" src={registration} alt="Registration logo" />
                     <Modal.Title>Registration</Modal.Title>

@@ -48,6 +48,7 @@ function TempDisplay() {
         }
       
         return (
+          <div className='display-container'>
           <div className="tempbox" key={element.id}>
             <div className="temp">
               {element && <h1>{element.temperature} C</h1>}
@@ -55,6 +56,7 @@ function TempDisplay() {
             <div className="temp-description">
               <p>Temperature</p>
             </div>
+          </div>
           </div>
         );
       };

@@ -1,11 +1,19 @@
-.container {
+.graph-container {
   position: relative;
   margin-left: 350px;
   display: flex;
-  width: 1045px;
+  width: 1003px;
   height: 413px;
   background-color: #edffef;
   border-radius: 25px;
+  padding: 0px 1rem;
+  top: -173px;
+  flex-direction: column;
+  transition: all 0.3s ease;
+
+}
+.sidebar.collapsed ~ .graph-container {
+  margin-left: 100px;
 }
 
 #name {
