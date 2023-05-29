@@ -11,8 +11,25 @@ import myData from '../../data/graph-data.json'
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
 const CO2Graph = () => {
-  const [filterOption, setFilterOption] = useState('realtime');
-  const [dataRange, setDataRange] = useState(24); 
+  const [filterOption, setFilterOption] = useState('');
+
+  const getInitialDataRange = (filterOption) => {
+    if (filterOption === 'realtime') {
+      return 10;
+    } else if (filterOption === 'daily') {
+      return 24;
+    } else if (filterOption === 'weekly') {
+      return 168;
+    }
+
+    return 10; // Default to 10 if filterOption is not recognized
+  };
+
+  const [dataRange, setDataRange] = useState(getInitialDataRange(filterOption));
+
+  useEffect(() => {
+    setDataRange(getInitialDataRange(filterOption));
+  }, [filterOption]);
 
   // const chartData = useCO2ChartData(filterOption);
   
@@ -32,53 +49,26 @@ const CO2Graph = () => {
   //   }
   // };
 
-  // const data = {
-  //   labels: chartData ? chartData.slice(-dataRange).map((element) => element.timestamp) : [],
-  //   datasets: [
-  //     {
-  //       label: 'max alert',
-  //       data: Array(dataRange).fill(250),
-  //       fill: false,
-  //       backgroundColor: 'red',
-  //       borderColor: 'red',
-  //       borderWidth: 1
-  //     },
-  //     {
-  //       label: 'co2',
-  //       data: chartData ? filterDataByOption(chartData) : [],
-  //       backgroundColor: 'rgba(000, 000, 000, 1)',
-  //       borderColor: 'rgba(000, 000, 000, 1)',
-  //       borderWidth: 1
-  //     },
-  //     {
-  //       label: 'min alert',
-  //       data: Array(dataRange).fill(180),
-  //       fill: false,
-  //       backgroundColor: 'blue',
-  //       borderColor: 'blue',
-  //       borderWidth: 1
-  //     }
-  //   ]
-  // };
-
   const chartData = myData.graphdata;
+
   const filterDataByOption = (data) => {
     if (filterOption === 'realtime') {
-      return data.map((element) => element.co2).reverse();
+      return data.slice(0, dataRange);
     } else if (filterOption === 'daily') {
-      // Filter last day's data
-      return data.slice(-dataRange).map((element) => element.co2).reverse();
+      return data.slice(0, -24);
     } else if (filterOption === 'weekly') {
-      // Filter last week's data
-      return data.slice(-dataRange).map((element) => element.co2).reverse();
-    } else if (filterOption === 'monthly') {
-      // Filter last month's data
-      return data.slice(-dataRange).map((element) => element.co2).reverse();
+      return data.slice(-168);
     }
+  
+    return data.slice(0, dataRange); // Default to the current data range if filterOption is not recognized
   };
+  
+  const filteredData = filterDataByOption(chartData);
+  const labels = filteredData ? filteredData.map((element) => element.timestamp).reverse() : [];
+  const co2Data = filteredData ? filteredData.map((element) => element.co2).reverse() : [];
+  
 
-  const labels = chartData ? chartData.map((element) => element.timestamp).reverse() : [];
-  const co2Data = chartData ? filterDataByOption(chartData) : [];
+  const filteredCO2Data = co2Data.slice(-dataRange);
 
   const data = {
     labels: labels.slice(-dataRange),
@@ -93,7 +83,7 @@ const CO2Graph = () => {
       },
       {
         label: 'co2',
-        data: co2Data.slice(-dataRange),
+        data: filteredCO2Data,
         backgroundColor: 'rgba(0, 0, 0, 1)',
         borderColor: 'rgba(0, 0, 0, 1)',
         borderWidth: 1,

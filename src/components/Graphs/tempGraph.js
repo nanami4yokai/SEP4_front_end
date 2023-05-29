@@ -4,82 +4,53 @@ import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import "./Graphs.css";
 import DataFilter from '../Filter/filter';
-import {useTempChartData} from './fetchingData/useTempChartData';
+import { useTempChartData } from './fetchingData/useTempChartData';
 import myData from '../../data/graph-data.json'
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
 const TempGraph = () => {
-  const [filterOption, setFilterOption] = useState('realtime');
-  const [dataRange, setDataRange] = useState(24); 
+  const [filterOption, setFilterOption] = useState('');
+  
+  const getInitialDataRange = (filterOption) => {
+    if (filterOption === 'realtime') {
+      return 10;
+    } else if (filterOption === 'daily') {
+      return 24;
+    } else if (filterOption === 'weekly') {
+      return 200;
+    }
 
-//  const chartData = useTempChartData(filterOption);
+    return 10; // Default to 10 if filterOption is not recognized
+  };
 
-  // const filterDataByOption = (data) => {
-  //   if (filterOption === 'realtime') {
-  //     return data.map((element) => element.temperature);
-  //   } else if (filterOption === 'daily') {
-  //     // Filter last day's data
-  //     return data.slice(-dataRange).map((element) => element.temperature);
-  //   } else if (filterOption === 'weekly') {
-  //     // Filter last week's data
-  //     return data.slice(-dataRange).map((element) => element.temperature);
-  //   } else if (filterOption === 'monthly') {
-  //     // Filter last month's data
-  //     return data.slice(-dataRange).map((element) => element.temperature);
-  //   }
-  // };
+  const [dataRange, setDataRange] = useState(getInitialDataRange(filterOption));
 
-  // const data = {
-  //   labels: chartData ? chartData.slice(-dataRange).map((element) => element.timestamp) : [],
-  //   datasets: [
-  //     {
-  //       label: 'max alert',
-  //       data: Array(dataRange).fill(28),
-  //       fill: false,
-  //       backgroundColor: 'red',
-  //       borderColor: 'red',
-  //       borderWidth: 1
-  //     },
-  //     {
-  //       label: 'temperature',
-  //       data: chartData ? filterDataByOption(chartData) : [],
-  //       backgroundColor: 'rgba(000, 000, 000, 1)',
-  //       borderColor: 'rgba(000, 000, 000, 1)',
-  //       borderWidth: 1
-  //     },
-  //     {
-  //       label: 'min alert',
-  //       data: Array(dataRange).fill(18),
-  //       fill: false,
-  //       backgroundColor: 'blue',
-  //       borderColor: 'blue',
-  //       borderWidth: 1
-  //     }
-  //   ]
-  // };
+  useEffect(() => {
+    setDataRange(getInitialDataRange(filterOption));
+  }, [filterOption]);
 
-  //mock data code below
+  // mock data code below
   const chartData = myData.graphdata;
-
 
   const filterDataByOption = (data) => {
     if (filterOption === 'realtime') {
-      return data.map((element) => element.temperature).reverse();
+      return data.slice(0, dataRange);
     } else if (filterOption === 'daily') {
-      // Filter last day's data
-      return data.slice(-dataRange).map((element) => element.temperature).reverse();
+      return data.slice(0, -24);
     } else if (filterOption === 'weekly') {
-      // Filter last week's data
-      return data.slice(-dataRange).map((element) => element.temperature).reverse();
-    } else if (filterOption === 'monthly') {
-      // Filter last month's data
-      return data.slice(-dataRange).map((element) => element.temperature).reverse();
+      return data.slice(-168);
     }
+  
+    return data.slice(0, dataRange); // Default to the current data range if filterOption is not recognized
   };
   
-  const labels = chartData ? chartData.map((element) => element.timestamp).reverse() : [];
-  const temperatureData = chartData ? filterDataByOption(chartData) : [];
+  const filteredData = filterDataByOption(chartData);
+  const labels = filteredData ? filteredData.map((element) => element.timestamp).reverse() : [];
+  const temperatureData = filteredData ? filteredData.map((element) => element.temperature).reverse() : [];
+  
+
+  const filteredTemperatureData = temperatureData.slice(-dataRange);
 
   const data = {
     labels: labels.slice(-dataRange),
@@ -94,7 +65,7 @@ const TempGraph = () => {
       },
       {
         label: 'temperature',
-        data: temperatureData.slice(-dataRange),
+        data: filteredTemperatureData,
         backgroundColor: 'rgba(0, 0, 0, 1)',
         borderColor: 'rgba(0, 0, 0, 1)',
         borderWidth: 1,
@@ -109,7 +80,6 @@ const TempGraph = () => {
       },
     ],
   };
-  
 
   const options = {
     maintainAspectRatio: false,
@@ -125,13 +95,13 @@ const TempGraph = () => {
           stepSize: 2,
         },
         position: 'left',
-      }
+      },
     },
     legend: {
       labels: {
-        fontSize: 26
-      }
-    }
+        fontSize: 26,
+      },
+    },
   };
 
   return (
