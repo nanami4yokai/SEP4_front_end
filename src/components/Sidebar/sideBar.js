@@ -4,6 +4,9 @@ import { Modal, Button } from 'react-bootstrap'
 import "./Sidebar.css";
 import axios from "axios";
 import { API_ENDPOINTS } from "../../config";
+jest.mock('../../images/chameleon.png', () => 'mock-image-path');
+jest.mock('../../images/user.png', () => 'mock-image-path');
+jest.mock('../../images/plus.png', () => 'mock-image-path');
 import chameleon from "../../images/chameleon.png";
 import user from "../../images/user.png";
 import plus from '../../images/plus.png'

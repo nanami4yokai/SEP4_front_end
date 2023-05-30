@@ -5,23 +5,23 @@ import registration from '../../images/registration.png'
 import axios from 'axios';
 import { API_ENDPOINTS } from '../../config';
 
-const Login = ({ onTerrariumsUpdate }) => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showModal, setShowModal] = useState(false);
+const Login = ({ onTerrariumsUpdate}) => {
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+    };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
 
 
 
@@ -74,13 +74,14 @@ const Login = ({ onTerrariumsUpdate }) => {
         }
       };
 
-  const handleReg = () => {
-    setShowModal(true);
-  };
+    const handleReg = () => {
+        setShowModal(true);
+    }
 
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
+    const handleModalClose = () => {
+        setShowModal(false);
+    }
+
 
     const handleRegistration = async () => {
     try {
@@ -104,41 +105,43 @@ const Login = ({ onTerrariumsUpdate }) => {
     }
   };
 
-  return (
-    <div className="background">
-      <div className="flex-container">
-        <div className="name">TerraSense</div>
-        <div className="loginBox">
-          <div className="loginForm">
-            <div className="formRow">
-              <label htmlFor="username"><b>Username:</b></label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                onChange={handleUsernameChange}
-              />
-            </div>
-            <div className="formRow">
-              <label htmlFor="password"><b>Password:</b></label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </div>
-            <button className="loginButton" type="button" onClick={handleLogin}>
-              Login
-            </button>
-            <button className="regButton" type="button" onClick={handleReg}>
-              Register
-            </button>
-          </div>
-        </div>
-      </div>
+    return (
+        <div className="background">
+            <div className="flex-container">
+                <div className="name">TerraSense</div>
+                <div className="loginBox">
+                    <div className="loginForm">
+                        <div className="formRow">
+                            <label htmlFor="username"><b>Username:</b></label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                value={username}
+                                onChange={handleUsernameChange}
+                            />
+                        </div>
+
+                        <div className="formRow">
+                            <label htmlFor="password"><b>Password:</b></label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={password}
+                                onChange={handlePasswordChange}
+                            />
+                        </div>
+
+                        <button className="loginButton" type="button" onClick={handleLogin}>
+                            Login
+                        </button>
+                        <button className="regButton" type="button" onClick={handleReg}>
+                            Register
+                        </button>
+                    </div>
+                </div>
+            </div >
 
             <Modal show={showModal} onHide={handleModalClose}className='reg-modal'>
                 <Modal.Header closeButton>

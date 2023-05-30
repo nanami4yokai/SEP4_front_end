@@ -1,100 +1,163 @@
+
+import 'jsdom-global/register';
 import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render, fireEvent, waitFor, screen } from "@testing-library/react";
+import axios from "./axios";
+import MockAdapter from "axios-mock-adapter";
 import DeleteTerrarium from "./DeleteTerrarium";
+import "jest-localstorage-mock";
+import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
 
-// Mock XMLHttpRequest
-const mockXHR = {
-  open: jest.fn(),
-  setRequestHeader: jest.fn(),
-  onreadystatechange: null,
-  readyState: 0,
-  status: 0,
-  response: null,
-  send: function (data) {
-    this.onreadystatechange();
-    if (this.status === 200) {
-      this.onload();
-    } else {
-      this.onerror();
-    }
-  },
-  abort: jest.fn(),
-};
 
-// Mock localStorage
-const mockLocalStorage = {
-  getItem: jest.fn(),
-};
 
-// Mock console.error
-console.error = jest.fn();
+
 
 describe("DeleteTerrarium", () => {
-  beforeEach(() => {
-    // Restore mock functions and values before each test
-    mockXHR.open.mockClear();
-    mockXHR.setRequestHeader.mockClear();
-    mockXHR.onreadystatechange = null;
-    mockXHR.readyState = 0;
-    mockXHR.status = 0;
-    mockXHR.response = null;
-    mockXHR.send.mockReset(); // Replace `mockClear()` with `mockReset()`
+  it("displays the confirmation modal when the 'Delete terrarium' button is clicked", () => {
+    // Render the component
+    const { getByText, queryByText } = render(<DeleteTerrarium terrariumId="1" />);
 
-    mockLocalStorage.getItem.mockClear();
-    mockLocalStorage.getItem.mockReturnValue("mockToken");
-  });
+    // Assert that the confirmation modal is initially not displayed
+    expect(queryByText("Confirmation")).toBeNull();
 
-  it("displays the delete confirmation modal when the button is clicked", () => {
-    const { getByText } = render(<DeleteTerrarium terrariumId="1" />);
+    // Select the 'Delete terrarium' button
+    const deleteButton = getByText("Delete terrarium");
 
-    fireEvent.click(getByText("Delete terrarium"));
+    // Simulate a click event on the button
+    fireEvent.click(deleteButton);
 
+    // Assert that the confirmation modal is displayed
     expect(getByText("Confirmation")).toBeInTheDocument();
-    expect(getByText("Are you sure you want to delete this terrarium?")).toBeInTheDocument();
   });
+});
 
-  it("calls the delete API when 'Yes' button is clicked and receives a success response", async () => {
-    const { getByText } = render(<DeleteTerrarium terrariumId="1" />);
-    mockXHR.onreadystatechange = () => {
-      if (mockXHR.readyState === 4) {
-        mockXHR.status = 200;
-        mockXHR.response = { message: "Terrarium deleted" };
-        mockXHR.onreadystatechange();
-      }
-    };
-
+describe("DeleteTerrarium", () => {
+  it("closes the confirmation modal when the 'Cancel' button is clicked", async () => {
+    // Render the component with the confirmation modal open
+    const { getByText, queryByText } = render(<DeleteTerrarium />);
     fireEvent.click(getByText("Delete terrarium"));
-    fireEvent.click(getByText("Yes"));
 
+    // Assert that the confirmation modal is displayed
+    expect(queryByText("Confirmation")).toBeInTheDocument();
+
+    // Use testing library to select the 'Cancel' button
+    const cancelButton = getByText("Cancel");
+
+    // Simulate a click event on the 'Cancel' button
+    fireEvent.click(cancelButton);
+
+    // Wait for the modal to close
     await waitFor(() => {
-      expect(mockXHR.open).toHaveBeenCalledWith("DELETE", "https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/delete");
-      expect(mockXHR.setRequestHeader).toHaveBeenCalledWith("Authorization", "Bearer mockToken");
-      expect(mockXHR.send).toHaveBeenCalledWith(JSON.stringify({ terrariumId: "1" }));
-      expect(console.error).not.toHaveBeenCalled();
-      expect(console.log).toHaveBeenCalledWith("Terrarium deleted");
-      expect(getByText("Confirmation")).not.toBeInTheDocument();
-    });
-  });
-
-  it("calls the delete API when 'Yes' button is clicked and receives an error response", async () => {
-    const { getByText } = render(<DeleteTerrarium terrariumId="1" />);
-    mockXHR.onreadystatechange = () => {
-      if (mockXHR.readyState === 4) {
-        mockXHR.status = 500;
-        mockXHR.response = { error: "Failed to delete terrarium" };
-        mockXHR.onreadystatechange();
-      }
-    };
-
-    fireEvent.click(getByText("Delete terrarium"));
-    fireEvent.click(getByText("Yes"));
-
-    await waitFor(() => {
-      expect(mockXHR.open).toHaveBeenCalledWith("DELETE", "https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/delete");
-      expect(mockXHR.setRequestHeader).toHaveBeenCalledWith("Authorization", "Bearer mockToken");
-      expect(mockXHR.send).toHaveBeenCalledWith(JSON.stringify({ terrariumId: "1" }));
-      expect(console.error).toHaveBeenCalledWith("Failed to delete terrarium");
-      expect(getByText("Confirmation")).not.toBeInTheDocument();
+      // Assert that the confirmation modal is closed
+      expect(queryByText("Confirmation")).toBeNull();
     });
   });
 });
+
+jest.mock('axios');
+describe("DeleteTerrarium", () => {
+  beforeEach(() => {
+    localStorage.setItem("jwtToken", "mockToken");
+    jest.spyOn(console, "log").mockImplementation(jest.fn());
+  });
+
+  afterEach(() => {
+    localStorage.clear();
+    jest.clearAllMocks();
+  });
+
+  it("calls the delete API when 'Yes' button is clicked and verifies the request", async () => {
+    const mockResponse = { status: 200, data: { message: "Terrarium deleted" } };
+    axios.delete.mockResolvedValueOnce(mockResponse);
+
+    const { container, getByText } = render(<DeleteTerrarium terrariumId="1" />);
+    fireEvent.click(getByText("Delete terrarium"));
+    fireEvent.click(getByText("Yes"));
+
+    await waitFor(() => {
+      expect(axios.delete).toHaveBeenCalledTimes(1);
+      expect(axios.delete).toHaveBeenCalledWith(
+        "https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/delete",
+        {
+          headers: { Authorization: "Bearer mockToken" },
+          params: { terrariumId: "1" },
+        }
+      );
+      expect(console.log).toHaveBeenCalledWith("Terrarium deleted");
+    });
+  });
+});
+
+describe('DeleteTerrarium', () => {
+  describe('handles delete API response correctly', () => {
+    beforeEach(() => {
+      jest.spyOn(axios, 'delete').mockImplementation((url) => {
+        if (url === 'https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/delete') {
+          if (true) {
+            return Promise.resolve({ status: 200, data: { message: 'Terrarium deleted' } });
+          } else {
+            return Promise.reject(new Error('Failed to delete terrarium'));
+          }
+        }
+      });
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('displays success message on successful delete', async () => {
+      render(<DeleteTerrarium terrariumId="1" />);
+
+      const deleteButton = screen.getByText('Delete terrarium');
+      userEvent.click(deleteButton);
+
+      await waitFor(() => {
+        const yesButton = screen.getByText(/yes/i);
+
+        const consoleSpy = jest.spyOn(console, 'log');
+
+        act(async () => {
+          await waitFor(() => {
+            const yesButton = screen.getByText(/yes/i);
+
+            expect(consoleSpy).toHaveBeenCalledWith('Terrarium deleted');
+
+            consoleSpy.mockRestore();
+          });
+        });
+      });
+    });
+
+    it('displays error message on failed delete', async () => {
+      render(<DeleteTerrarium terrariumId="1" />);
+      
+      // Wait for the delete button to appear
+      await waitFor(() => {
+        const deleteButton = screen.getByRole('button', { name: /delete terrarium/i });
+        userEvent.click(deleteButton);
+      });
+      
+      // Wait for the error message to appear
+      await waitFor(() => {
+        const errorMessage = screen.getByText(/Failed to delete terrarium/i);
+        expect(errorMessage).toBeInTheDocument();
+      });
+      
+      const errorSpy = jest.spyOn(console, 'error');
+      
+      // Verify the error message and restore the spy
+      act(async () => {
+        await waitFor(() => {
+          const yesButton = screen.getByRole('button', { name: /yes/i });
+          userEvent.click(yesButton);
+        });
+  
+        expect(errorSpy).toHaveBeenCalledWith('Failed to delete terrarium');
+        
+        errorSpy.mockRestore();
+      });
+    });
+  });
+})

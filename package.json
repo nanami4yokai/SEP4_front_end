@@ -8,6 +8,8 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.3.0",
+    "jest": "^27.5.1",
+    "jsdom": "^22.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-chartjs-2": "^5.2.0",
@@ -44,8 +46,19 @@
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.2",
     "@testing-library/jest-dom": "^5.16.5",
+<<<<<<< HEAD
     "babel-jest": "^29.5.0",
     "jest": "^27.5.1",
     "react-testing-library": "^8.0.1"
     }
+=======
+    "axios-mock-adapter": "^1.21.4",
+    "babel-jest": "^29.5.0",
+    "jest-css-modules-transform": "^4.4.2",
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-localstorage-mock": "^2.4.26",
+    "jest-transform-file": "^1.1.1",
+    "jsdom-global": "^3.0.2"
+  }
+>>>>>>> 9ab0af905fe913bbad587b8580d623a8b8c1a869
 }
