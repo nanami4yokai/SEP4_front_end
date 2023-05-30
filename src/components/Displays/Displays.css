@@ -1,85 +1,83 @@
 .tempbox {
-    position: relative;
-    width: 180px;
-    height: 107px;
-    left: 699px;
-    top: 154px;
-    
-    background: #EDFFEF;
-    border-radius: 25px;
+  position: relative;
+  width: 180px;
+  height: 107px;
+  left: 763px;
+  top: -3px;
+  background: #edffef;
+  border-radius: 25px;
 }
 
-.temp{
-    position: relative;
-    width: 231px;
-    height: 0px;
-    left: 60px;
-    top: 40px;
-    
+.temp {
+  position: relative;
+  width: 231px;
+  height: 0px;
+  left: 60px;
+  top: 40px;
 }
 
-.temp-description{
-    position: relative;
-    width: 231px;
-    height: 0px;
-    left: 50px;
-    top: 15px;
-   
-    
+.temp-description {
+  position: relative;
+  width: 231px;
+  height: 0px;
+  left: 50px;
+  top: 15px;
 }
 
-.cobox{
-    position: relative;
-    width: 180px;
-    height: 107px;
-    left: 900px;
-    top: 50px;
+.cobox {
+  position: relative;
+  width: 180px;
+  height: 107px;
+  left: 970px;
+  top: -111px;
 
-    
-    background: #EDFFEF;
-    border-radius: 25px;
+  background: #edffef;
+  border-radius: 25px;
 }
 
-.co{
-    position: relative;
-    width: 231px;
-    height: 0px;
-    left: 15px;
-    top: 40px;
+.co {
+  position: relative;
+  width: 231px;
+  height: 0px;
+  left: 15px;
+  top: 40px;
 }
 
-.co-description{
-    position: relative;
-    width: 231px;
-    height: 0px;
-    left: 70px;
-    top: 15px;
+.co-description {
+  position: relative;
+  width: 231px;
+  height: 0px;
+  left: 70px;
+  top: 15px;
 }
 
-.humidbox{
-    position: relative;
-    width: 180px;
-    height: 107px;
-    left: 1100px;
-    top: -60px;
+.humidbox {
+  position: relative;
+  width: 180px;
+  height: 107px;
+  left: 1175px;
+  top: -218px;
 
-    
-    background: #EDFFEF;
-    border-radius: 25px;
+  background: #edffef;
+  border-radius: 25px;
 }
 
-.humid{
-    position: relative;
-    width: 231px;
-    height: 0px;
-    left: 60px;
-    top: 40px;
+.humid {
+  position: relative;
+  width: 231px;
+  height: 0px;
+  left: 60px;
+  top: 40px;
 }
 
-.humid-description{
-     position: relative;
-    width: 231px;
-    height: 0px;
-    left: 60px;
-    top: 15px;
+.humid-description {
+  position: relative;
+  width: 231px;
+  height: 0px;
+  left: 60px;
+  top: 15px;
+}
+
+h1 {
+  font-size: 2.3rem;
 }

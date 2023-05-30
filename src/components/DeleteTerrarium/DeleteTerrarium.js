@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button } from 'react-bootstrap'
 import './DeleteTerrarium.css'
+import axios from "axios";
+import { API_ENDPOINTS } from "../../config";
 
 export default function DeleteTerrarium({ terrariumId }) {
     const [showModal, setShowModal] = useState(false);
@@ -13,21 +15,32 @@ export default function DeleteTerrarium({ terrariumId }) {
         setShowModal(false);
     }
 
-    const handleTerrariumDelete = () => {
-        const token = localStorage.getItem('jwtToken');
-        const xhr = new XMLHttpRequest();
-        xhr.open('DELETE', 'https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/delete');
-        xhr.setRequestHeader('Authorization', `Bearer ${token}`);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    console.log('Terrarium deleted');
-                } else {
-                    console.error('Failed to delete terrarium');
-                }
+    const handleTerrariumDelete = async () => { 
+        try {
+            const token = localStorage.getItem('jwtToken'); 
+            if (!token) {
+                console.error('JWT token not found');
+                return;
             }
-        };
-        xhr.send(JSON.stringify({ terrariumId: terrariumId }));
+             const config = {
+             headers: {
+            'Authorization': `Bearer ${token}`
+             }
+            };
+            const response = await axios.delete(API_ENDPOINTS.delete, 
+                { ...config, params: { terrariumId } }
+            );
+
+            if (response.status === 200) {
+                console.log('Terrarium deleted');
+            } else {
+                console.error('Failed to delete terrarium');
+            }
+            
+        } catch (error) {
+            console.error('Error deleting terrarium:', error);
+        }
+        
     }
 
     return (

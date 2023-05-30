@@ -3,6 +3,7 @@ import './Login.css'
 import { Modal, Button } from 'react-bootstrap'
 import registration from '../../images/registration.png'
 import axios from 'axios';
+import { API_ENDPOINTS } from '../../config';
 
 const Login = ({ onTerrariumsUpdate }) => {
   const [email, setEmail] = useState('');
@@ -24,57 +25,54 @@ const Login = ({ onTerrariumsUpdate }) => {
 
 
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch('https://terrasense-service-dot-terrasense.ew.r.appspot.com/public/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-
-      const { token } = await response.json();
-
-      localStorage.setItem('jwtToken', token);
-
-      console.log('Login successful');
-      const authenticatedRequest = new Request('https://terrasense-service-dot-terrasense.ew.r.appspot.com/public/register', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      const authenticatedResponse = await fetch(authenticatedRequest);
-
-      if (authenticatedResponse.ok) {
-        const authenticatedData = await authenticatedResponse.json();
-        console.log('Authenticated data:', authenticatedData);
-      } else {
-        console.error('Authenticated request failed');
-      }
-
-      const terrariumsResponse = await axios.get('https://terrasense-service-dot-terrasense.ew.r.appspot.com/all', authenticatedRequest);
-
-      if (terrariumsResponse.status === 200) {
-        const terrariumsData = terrariumsResponse.data;
-        console.log('Terrariums:', terrariumsData);
-        // Update the terrariums in the parent component
-        onTerrariumsUpdate(terrariumsData);
-      } else {
-        console.error('Failed to fetch terrariums');
-      }
-
-    } catch (error) {
-      console.error('Login error:', error);
-    }
-  };
+    const handleLogin = async () => {
+        try {
+          const response = await axios.post(
+            API_ENDPOINTS.login,
+            { username, password },
+            { headers: { 'Content-Type': 'application/json' } }
+          );
+    
+          if (response.status === 200) {
+            const { token } = response.data;
+            localStorage.setItem('jwtToken', token);
+    
+            console.log('Login successful');
+            const authenticatedResponse = await axios.get(
+              API_ENDPOINTS.login,
+              {
+                headers: { 'Authorization': `Bearer ${token}` }
+              }
+            );
+    
+            if (authenticatedResponse.status === 200) {
+              const authenticatedData = authenticatedResponse.data;
+              console.log('Authenticated data:', authenticatedData);
+            } else {
+              console.error('Authenticated request failed');
+            }
+    
+            const terrariumsResponse = await axios.get(
+              API_ENDPOINTS.terrariums,
+              {
+                headers: { 'Authorization': `Bearer ${token}` }
+              }
+            );
+    
+            if (terrariumsResponse.status === 200) {
+              const terrariumsData = terrariumsResponse.data;
+              console.log('Terrariums:', terrariumsData);
+              onTerrariumsUpdate(terrariumsData);
+            } else {
+              console.error('Failed to fetch terrariums');
+            }
+          } else {
+            throw new Error('Login failed');
+          }
+        } catch (error) {
+          console.error('Login error:', error);
+        }
+      };
 
   const handleReg = () => {
     setShowModal(true);
@@ -84,24 +82,23 @@ const Login = ({ onTerrariumsUpdate }) => {
     setShowModal(false);
   };
 
-  const handleRegistration = async () => {
+    const handleRegistration = async () => {
     try {
-      const response = await fetch('https://terrasense-service-dot-terrasense.ew.r.appspot.com/public/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, username, password }),
-      });
+      const response = await axios.post(
+        API_ENDPOINTS.register,
+        { email, username, password },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
 
-      if (!response.ok) {
+      if (response.status === 200) {
+        const { token } = response.data;
+        localStorage.setItem('jwtToken', token);
+
+        console.log('Registration successful');
+        handleModalClose();
+      } else {
         throw new Error('Registration failed');
       }
-
-      const { token } = await response.json();
-      localStorage.setItem('jwtToken', token);
-      console.log('Registration successful');
-      handleModalClose();
     } catch (error) {
       console.error('Registration error:', error);
     }
@@ -143,57 +140,56 @@ const Login = ({ onTerrariumsUpdate }) => {
         </div>
       </div>
 
-      {/* Reg Modal */}
-      <Modal show={showModal} onHide={handleModalClose} data-testid="modal">
-        <Modal.Header closeButton>
-          <img id="reg-logo" src={registration} alt="Registration logo" />
-          <Modal.Title>Registration</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <label htmlFor="registration-email">
-            <b>Email:</b>
-          </label>
-          <input
-            type="text"
-            id="registration-email"
-            name="registration-email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-          <br />
-          <label htmlFor="registration-username">
-            <b>Username:</b>
-          </label>
-          <input
-            type="text"
-            id="registration-username"
-            name="registration-username"
-            value={username}
-            onChange={handleUsernameChange}
-          />
-          <br />
-          <label htmlFor="registration-password">
-            <b>Password:</b>
-          </label>
-          <input
-            type="password"
-            id="registration-password"
-            name="registration-password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button id="cancel-btn" variant="secondary" onClick={handleModalClose}>
-            Cancel
-          </Button>
-          <Button id="reg-btn" variant="primary" onClick={handleRegistration}>
-            Register
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-  );
+            <Modal show={showModal} onHide={handleModalClose}className='reg-modal'>
+                <Modal.Header closeButton>
+                    <img id="reg-logo" src={registration} alt="Registration logo" />
+                    <Modal.Title>Registration</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <label htmlFor="registration-email">
+                        <b>Email:</b>
+                    </label>
+                    <input
+                        type="text"
+                        id="registration-email"
+                        name="registration-email"
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
+                    <br />
+                    <label htmlFor="registration-username">
+                        <b>Username:</b>
+                    </label>
+                    <input
+                        type="text"
+                        id="registration-username"
+                        name="registration-username"
+                        value={username}
+                        onChange={handleUsernameChange}
+                    />
+                    <br />
+                    <label htmlFor="registration-password">
+                        <b>Password:</b>
+                    </label>
+                    <input
+                        type="password"
+                        id="registration-password"
+                        name="registration-password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button id='cancel-btn' variant="secondary" onClick={handleModalClose}>
+                        Cancel
+                    </Button>
+                    <Button id='reg-btn' variant="primary" onClick={handleRegistration}>
+                        Register
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </div >
+    );
 };
 
 export default Login;
