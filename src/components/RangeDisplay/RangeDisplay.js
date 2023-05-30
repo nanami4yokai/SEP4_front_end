@@ -3,42 +3,52 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import './RangeDisplay.css';
 import param from "../../images/param.png";
-import axios from 'axios';
+import rangesData from '../../data/terrarium-data.json';
 import { API_ENDPOINTS } from '../../config';
 
 function RangeDisplay() {
-  const [temperatureRange, setTemperatureRange] = useState({ min: 0, max: 0 });
-  const [co2Range, setCO2Range] = useState({ min: 0, max: 0 });
-  const [humidityRange, setHumidityRange] = useState({ min: 0, max: 0 });
+  const terrariumData = rangesData.terrariumdata.find(terrarium => terrarium.id === 1);
+
+  const [temperatureRange, setTemperatureRange] = useState({
+    min: terrariumData.minTemperature,
+    max: terrariumData.maxTemperature,
+  });
+  const [co2Range, setCO2Range] = useState({
+    min: terrariumData.minCO2,
+    max: terrariumData.maxCO2,
+  });
+  const [humidityRange, setHumidityRange] = useState({
+    min: terrariumData.minHumidity,
+    max: terrariumData.maxHumidity,
+  });
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
  
   const handleSave = async () => {
-    try {
-      const apiUrl = API_ENDPOINTS.limits;
+    // try {
+    //   const apiUrl = API_ENDPOINTS.limits;
 
-      const requestData = {
-        minTemperature: temperatureRange.min,
-        maxTemperature: temperatureRange.max,
-        minCO2: co2Range.min,
-        maxCO2: co2Range.max,
-        minHumidity: humidityRange.min,
-        maxHumidity: humidityRange.max
-      };
+    //   const requestData = {
+    //     minTemperature: temperatureRange.min,
+    //     maxTemperature: temperatureRange.max,
+    //     minCO2: co2Range.min,
+    //     maxCO2: co2Range.max,
+    //     minHumidity: humidityRange.min,
+    //     maxHumidity: humidityRange.max
+    //   };
 
-      const response = await axios.post( apiUrl, requestData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      console.log('Data saved successfully');
-    } catch (error) {
-      console.error(error);
-    }
-    setShowModal(false);
+    //   const response = await axios.post( apiUrl, requestData, {
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }
+    //   });
+    //   console.log('Data saved successfully');
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    // setShowModal(false);
   };
-
 
   const handleEditParameters = () => {
     setEditMode(true);

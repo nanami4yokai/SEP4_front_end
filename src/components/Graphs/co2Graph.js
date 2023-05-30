@@ -7,6 +7,8 @@ import "./Graphs.css"
 import DataFilter from '../Filter/filter';
 import { useCO2ChartData } from './fetchingData/useCO2ChartData';
 import myData from '../../data/graph-data.json'
+import limitsData from '../../data/terrarium-data.json'
+
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
@@ -67,15 +69,19 @@ const CO2Graph = () => {
   const labels = filteredData ? filteredData.map((element) => element.timestamp).reverse() : [];
   const co2Data = filteredData ? filteredData.map((element) => element.co2).reverse() : [];
   
-
   const filteredCO2Data = co2Data.slice(-dataRange);
+
+  const terrariumId = 1;
+  const terrarium = limitsData.terrariumdata.find((item) => item.id === terrariumId);
+  const minCO2 = terrarium ? terrarium.minCO2 : 0;
+  const maxCO2 = terrarium ? terrarium.maxCO2 : 0;
 
   const data = {
     labels: labels.slice(-dataRange),
     datasets: [
       {
         label: 'max alert',
-        data: Array(dataRange).fill(500),
+        data: Array(dataRange).fill(maxCO2),
         fill: false,
         backgroundColor: 'red',
         borderColor: 'red',
@@ -90,7 +96,7 @@ const CO2Graph = () => {
       },
       {
         label: 'min alert',
-        data: Array(dataRange).fill(250),
+        data: Array(dataRange).fill(minCO2),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
