@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import './RangeDisplay.css';
 import param from "../../images/param.png";
 import rangesData from '../../data/terrarium-data.json';
-import { API_ENDPOINTS } from '../../config';
+// import { API_ENDPOINTS } from '../../config';
+// import axios from 'axios';
 
 function RangeDisplay() {
   const terrariumData = rangesData.terrariumdata.find(terrarium => terrarium.id === 1);

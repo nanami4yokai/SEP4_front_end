@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap'
 import "./Sidebar.css";
+import axios from "axios";
+import { API_ENDPOINTS } from "../../config";
 import chameleon from "../../images/chameleon.png";
 import user from "../../images/user.png";
 import plus from '../../images/plus.png'
-import axios from "axios";
-import { API_ENDPOINTS } from "../../config";
+
 
 function Sidebar({terrariums: sidebarTerrariums}) {
   const [collapsed, setCollapsed] = useState(true);

@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './Displays.css';
-import axios from 'axios';
-import { useHumData } from './fetchingData/useHumData';
-import myData from '../../data/recordings-data.json' 
+// import axios from 'axios';
+// import { useHumData } from './fetchingData/useHumData';
 import humData from '../../data/graph-data.json'
 
 // function HumidDisplay() {

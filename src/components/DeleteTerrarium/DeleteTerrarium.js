@@ -33,6 +33,7 @@ export default function DeleteTerrarium({ terrariumId }) {
 
             if (response.status === 200) {
                 console.log('Terrarium deleted');
+                setShowModal(false);
             } else {
                 console.error('Failed to delete terrarium');
             }

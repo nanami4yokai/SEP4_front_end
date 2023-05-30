@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './Displays.css';
-import axios from 'axios';
-import { useCO2Data } from './fetchingData/useCO2Data';
-import myData from '../../data/recordings-data.json' 
+// import axios from 'axios';
+// import { useCO2Data } from './fetchingData/useCO2Data';
 import co2Data from '../../data/graph-data.json'
 
 // function CO2Display() {
