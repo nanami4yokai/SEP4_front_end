@@ -2,7 +2,7 @@
   "graphdata": [
     {
       "id": 1,
-      "temperature": 16.5,
+      "temperature": 30.5,
       "co2": 493,
       "humidity": 50,
       "timestamp": "29-05-23T18:00"
