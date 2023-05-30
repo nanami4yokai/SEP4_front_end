@@ -1,7 +1,17 @@
 .notification-alert {
   border-radius: 25px;
   height: 125px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
+
+.notification-alert.show {
+    opacity: 1;
+  }
+  
+  .notification-alert.hide {
+    opacity: 0;
+  }
 
 .notif-header{
     display: flex;

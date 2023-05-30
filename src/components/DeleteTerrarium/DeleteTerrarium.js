@@ -65,6 +65,7 @@ import React, { useState } from "react";
 import { Modal, Button } from 'react-bootstrap'
 import './DeleteTerrarium.css'
 import axios from "axios";
+import { API_ENDPOINTS } from "../../config";
 
 export default function DeleteTerrarium({terrariumId}) {
     const [showModal, setShowModal] = useState(false);
@@ -80,27 +81,29 @@ export default function DeleteTerrarium({terrariumId}) {
     const handleTerrariumDelete = async () => { 
         try {
             const token = localStorage.getItem('jwtToken'); 
+            if (!token) {
+                console.error('JWT token not found');
+                return;
+            }
              const config = {
              headers: {
             'Authorization': `Bearer ${token}`
              }
             };
-            const response = await axios.delete('https://terrasense-service-dot-terrasense.ew.r.appspot.com/terrarium/delete', {
-                headers: {
-                    'Authorization': `Bearer ${token}`                },
-                params: {
-                    terrariumId: terrariumId
-                }
-            });
+            const response = await axios.delete(API_ENDPOINTS.delete, 
+                { ...config, params: { terrariumId } }
+            );
 
             if (response.status === 200) {
                 console.log('Terrarium deleted');
             } else {
                 console.error('Failed to delete terrarium');
             }
+            
         } catch (error) {
             console.error('Error deleting terrarium:', error);
         }
+        
     }
 
     return (
