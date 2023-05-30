@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './Displays.css';
 // import axios from 'axios';
 // import { useTempData } from './fetchingData/useTempData';
@@ -37,36 +37,36 @@ import temData from '../../data/graph-data.json'
 // Code for working with mockup file 
 function TempDisplay() {
 
-    const showData = ({ id }) => {
-        const data = temData.graphdata;
-      
-        const element = data.find((element) => element.id === id);
+  const showData = ({ id }) => {
+    const data = temData.graphdata;
 
-      
-        if (!element) {
-          return <div>Element not found</div>;
-        }
-      
-        return (
-          <div className='display-container'>
-          <div className="tempbox" key={element.id}>
-            <div className="temp">
-              {element && <h1>{element.temperature} C</h1>}
-            </div>
-            <div className="temp-description">
-              <p>Temperature</p>
-            </div>
+    const element = data.find((element) => element.id === id);
+
+
+    if (!element) {
+      return <div>Element not found</div>;
+    }
+
+    return (
+      <div className='display-container' data-itemID='temp-display'>
+        <div className="tempbox" key={element.id}>
+          <div className="temp">
+            {element && <h1>{element.temperature} C</h1>}
           </div>
+          <div className="temp-description">
+            <p>Temperature</p>
           </div>
-        );
-      };
-      
-      return (
-        <div>
-          {showData({ id : 1})} 
         </div>
-      );
-    
+      </div>
+    );
+  };
+
+  return (
+    <div>
+      {showData({ id: 1 })}
+    </div>
+  );
+
 }
 
 export default TempDisplay;

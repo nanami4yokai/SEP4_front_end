@@ -58,18 +58,18 @@ function RangeDisplay() {
 
   return (
     <>
-      <div className="range-display">
+      <div className="range-display" data-itemid='range-dislpay'>
         <div className="temp-ranges">
           <div id='t-circle'></div>
-          <p>Temperature range: {temperatureRange.min}°C - {temperatureRange.max}°C</p>
+          <p data-itemID='temp-r'>Temperature range: {temperatureRange.min}°C - {temperatureRange.max}°C</p>
         </div>
         <div className="co2-ranges">
           <div id='c-circle'></div>
-          <p>CO2 range: {co2Range.min}ppm - {co2Range.max}ppm</p>
+          <p data-itemID='co2-r'>CO2 range: {co2Range.min}ppm - {co2Range.max}ppm</p>
         </div>
         <div className="hum-ranges">
           <div id='h-circle'></div>
-          <p>Humidity range: {humidityRange.min}% - {humidityRange.max}%</p>
+          <p data-itemID='hum-r'>Humidity range: {humidityRange.min}% - {humidityRange.max}%</p>
         </div>
         <Button id="edit-parameters" variant="primary" onClick={handleEditParameters}>
           Edit Parameters
@@ -84,7 +84,7 @@ function RangeDisplay() {
         <Modal.Body>
           <div className='parameter-grid'>
             <div className="parameter-input">
-              <label htmlFor="temperatureMin">Temperature Min:</label>
+              <label htmlFor="temperatureMin" data-itemid='temp-min'>Temperature Min:</label>
               <input
                 type="number"
                 id="temperatureMin"
@@ -93,7 +93,7 @@ function RangeDisplay() {
               />
             </div>
             <div className="parameter-input">
-              <label htmlFor="temperatureMax">Temperature Max:</label>
+              <label htmlFor="temperatureMax" data-itemid='temp-max'>Temperature Max:</label>
               <input
                 type="number"
                 id="temperatureMax"
@@ -140,7 +140,7 @@ function RangeDisplay() {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button id="cancel-button" variant="secondary" onClick={() => setShowModal(false)}>
+          <Button id="cancel-button" variant="secondary" onClick={() => setShowModal(false)} data-itemid='cancel-bttn'>
             Cancel
           </Button>
           <Button id="save-button" variant="primary" onClick={handleSave}>

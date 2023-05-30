@@ -55,7 +55,7 @@ export default function TempAlert() {
 
   return (
     <div>
-      <Alert className={`notification-alert ${showAlert ? 'show' : 'hide'}`} key='danger' variant='danger'>
+      <Alert className={`notification-alert ${showAlert ? 'show' : 'hide'}`} key='danger' variant='danger' data-itemid='temp-alert'>
         <div className='notif-content'>
           <div className='notif-header'>
             <div id='temp-circle'></div>
