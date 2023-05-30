@@ -24,37 +24,20 @@ import './Terrarium.css'
 import './App.css'
 
 const Terrarium = () => {
-    const { terrariumId } = useParams(); // Get the terrariumId from the URL
+    const { terrariumId } = useParams(); // 
     const [terrariumData, setTerrariumData] = useState(null);
 
-    // Fetch terrarium data based on the terrariumId
-    // useEffect(() => {
-    //     const fetchTerrariumData = async () => {
-    //         try {
-    //             const response = await fetch(`/api/terrariums/${terrariumId}`);
-    //             const data = await response.json();
-    //             setTerrariumData(data);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-
-    //     fetchTerrariumData();
-    // }, [terrariumId]);
 
     const { temperatureData, tempError } = useTempData();
     const { co2Data, co2Error } = useCO2Data();
     const { humidityData, humError } = useHumData();
 
-    const filterOption = 'realtime'; // Set the desired filter option here
+    const filterOption = 'realtime'; 
 
     const tempChartData = useTempChartData(filterOption);
     const co2ChartData = useCO2ChartData(filterOption);
     const humChartData = useHumChartData(filterOption);
 
-    // if (!terrariumData) {
-    //     return <div>Loading...</div>;
-    // }
 
     return (
         <div className="Main">

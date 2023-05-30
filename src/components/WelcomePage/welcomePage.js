@@ -15,9 +15,6 @@ export default function WelcomePage() {
                 4. Next, navigate to the “Edit parameters” button.<br />
                 5. A form will show up. Fill it in with the necessary information about the minimum and maximum ranges of the sensors. Save the information.<br />
                 6. After setting the ranges, the graphs will start showcasing sensor information.  </p>
-            <p id='4'>Additionally, you will be able to set up a feeding schedule that will make sure to feed your pets automatically, add, remove or edit information
-                about your pets and receive alerts in case the sensors go beyond the set limits, so you can take action on preventing a dangerous environment
-                for your pets. </p>
             <p id='5'>Have fun!</p>
             <p id='signature'>Sincerely, <i>TerraSense</i> development team.
                 <img id="paw-sign" src={pets} alt="Paw signature" />

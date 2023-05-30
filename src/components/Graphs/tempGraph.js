@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, LineElement, CategoryScale, PointElement, LinearScale } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import axios from 'axios';
+// import axios from 'axios';
 import "./Graphs.css";
 import DataFilter from '../Filter/filter';
-import { useTempChartData } from './fetchingData/useTempChartData';
+// import { useTempChartData } from './fetchingData/useTempChartData';
 import myData from '../../data/graph-data.json'
 import limitsData from '../../data/terrarium-data.json'
 

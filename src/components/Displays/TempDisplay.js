@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './Displays.css';
-import axios from 'axios';
-import { useTempData } from './fetchingData/useTempData';
-import myData from '../../data/recordings-data.json' 
+// import axios from 'axios';
+// import { useTempData } from './fetchingData/useTempData';
 import temData from '../../data/graph-data.json'
 
 // function TempDisplay() {
