@@ -20,9 +20,7 @@ export const useTempData = () => {
         };
 
         fetchTemperatureData();
-        // const intervalId = setInterval(fetchHumData, 20000);
-
-        //  return () => clearInterval(intervalId); 20 sec refresh
+       
     }, []);
 
     return { temperatureData, tempError };

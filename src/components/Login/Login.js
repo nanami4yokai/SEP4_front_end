@@ -10,6 +10,7 @@ const Login = ({ onTerrariumsUpdate}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -51,7 +52,7 @@ const Login = ({ onTerrariumsUpdate}) => {
             } else {
               console.error('Authenticated request failed');
             }
-    
+            
             const terrariumsResponse = await axios.get(
               API_ENDPOINTS.terrariums,
               {
@@ -71,6 +72,7 @@ const Login = ({ onTerrariumsUpdate}) => {
           }
         } catch (error) {
           console.error('Login error:', error);
+          setErrorMessage('Login failed. Please check your credentials.');
         }
       };
 
@@ -102,6 +104,7 @@ const Login = ({ onTerrariumsUpdate}) => {
       }
     } catch (error) {
       console.error('Registration error:', error);
+      setErrorMessage('Registration failed. Please try again later.');
     }
   };
 
@@ -111,6 +114,7 @@ const Login = ({ onTerrariumsUpdate}) => {
                 <div className="name">TerraSense</div>
                 <div className="loginBox">
                     <div className="loginForm">
+                    {errorMessage && <div className="error">{errorMessage}</div>}
                         <div className="formRow">
                             <label htmlFor="username"><b>Username:</b></label>
                             <input
@@ -149,6 +153,7 @@ const Login = ({ onTerrariumsUpdate}) => {
                     <Modal.Title>Registration</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {errorMessage && <div className="error">{errorMessage}</div>}
                     <label htmlFor="registration-email">
                         <b>Email:</b>
                     </label>

@@ -63,6 +63,11 @@
   margin-top: 5px; 
 }
 
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
 .loginButton {
   margin-left: auto;
   margin-right: auto;
