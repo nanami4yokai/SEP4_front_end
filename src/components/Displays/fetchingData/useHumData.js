@@ -20,9 +20,7 @@ export const useHumData = () => {
         };
 
         fetchHumData();
-         // const intervalId = setInterval(fetchHumData, 20000);
-
-        //  return () => clearInterval(intervalId); 20 sec refresh
+        
     }, []);
 
     return { humidityData, humError };

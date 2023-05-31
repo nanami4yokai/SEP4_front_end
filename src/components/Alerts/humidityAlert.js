@@ -65,7 +65,7 @@ export default function HumidityAlert() {
           </div>
           <div className='notif-text'>
             <p>
-              The humidity exceeds the perimtted <b>maximum</b>!<br />
+              The humidity exceeds the perimtted <b>limits</b>!<br />
               Please take action!
             </p>
           </div>

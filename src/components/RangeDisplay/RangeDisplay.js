@@ -143,7 +143,7 @@ function RangeDisplay() {
           <Button id="cancel-button" variant="secondary" onClick={() => setShowModal(false)}>
             Cancel
           </Button>
-          <Button id="save-button" variant="primary" onClick={handleSave}>
+          <Button id="save-button" variant="primary" onClick={() => setShowModal(false)}> 
             Save
           </Button>
         </Modal.Footer>

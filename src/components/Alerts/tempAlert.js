@@ -65,7 +65,7 @@ export default function TempAlert() {
           </div>
           <div className='notif-text'>
             <p>
-              The temperature exceeds the permitted <b>maximum</b>! <br />
+              The temperature exceeds the permitted <b>limits</b>! <br />
               Please take action!
             </p>
           </div>

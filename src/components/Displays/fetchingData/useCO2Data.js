@@ -21,9 +21,7 @@ export const useCO2Data = () => {
 
         fetchCO2Data();
 
-        // const intervalId = setInterval(fetchCO2Data, 20000);
-
-        //  return () => clearInterval(intervalId); 20 sec refresh if we ever get live data
+    
     }, []);
 
     return { co2Data, co2Error };
